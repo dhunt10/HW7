@@ -118,7 +118,7 @@ public class Reference implements Formula {
       for (int i = 0; i < zeroDiff; i++) {
         for (int j = 0; j < oneDiff; j++) {
           StringBuilder sb = new StringBuilder();
-          System.out.println(sb.append((char) (((coord1[0].charAt(coord1[0].length() - 1)) + i))));
+          sb.append((char) (((coord1[0].charAt(coord1[0].length() - 1)) + i)));
           sb.append(Integer.parseInt(coord1[1]) + j);
           bounds.add(sb.toString());
         }
@@ -187,7 +187,6 @@ public class Reference implements Formula {
 
       for (int i = 0; i < evaluatedRefs.size(); i++) {
         try {
-          System.out.println(mapOfCells.get(evaluatedRefs.get(i)).getEvaluatedData());
           sb.append(mapOfCells.get(evaluatedRefs.get(i)).getEvaluatedData());
           return new StringValue(sb.toString());
         }

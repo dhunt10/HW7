@@ -26,8 +26,8 @@ public class BeyondGood {
    * @param args any command-line arguments.
    */
   public static void main(String[] args) throws FileNotFoundException {
-    File infile = new File("/Users/darinhunt/Desktop/OOD/HW55555/HW5_UPDATED/test/test3.txt");
-    File outfile = new File("/Users/darinhunt/Desktop/OOD/HW55555/HW5_UPDATED/test/testresult.txt");
+    File infile = null;
+    File outfile = null;
     String incell = null;
     String view = "graphic";
     for (int i = 0; i < args.length; i++) {
@@ -81,7 +81,6 @@ public class BeyondGood {
       reader = new BufferedReader(new FileReader(file));
       String line = reader.readLine();
       while (line != null) {
-        System.out.println(line);
         String[] phrase = line.split(" ", 2);
         String coordinate = phrase[0];
         String formula = phrase[1];
