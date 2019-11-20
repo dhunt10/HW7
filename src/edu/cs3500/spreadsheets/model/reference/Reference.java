@@ -6,11 +6,9 @@ import edu.cs3500.spreadsheets.model.Formula;
 import edu.cs3500.spreadsheets.model.values.NumValue;
 import edu.cs3500.spreadsheets.model.values.StringValue;
 import edu.cs3500.spreadsheets.model.values.Value;
-import java.awt.SystemTray;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.function.DoublePredicate;
 
 /**
  * Reference is a type that references any cell.
@@ -64,7 +62,7 @@ public class Reference implements Formula {
    * @param firstBound the single cell to be parsed through.
    * @return returns a list of 1 single reference cell.
    */
-  public List<String> referenceListMaker(String firstBound) {
+  private List<String> referenceListMaker(String firstBound) {
 
     String[] coord1 = firstBound.split("(?<=\\D)(?=\\d)", 2);
 
@@ -85,7 +83,7 @@ public class Reference implements Formula {
    * @param secondBound range is defined with second bound as the start.
    * @return a list of strings that hold all the points being referenced.
    */
-  public List<String> referenceListMaker(String firstBound, String secondBound) {
+  private List<String> referenceListMaker(String firstBound, String secondBound) {
     List<String> bounds = new ArrayList<>();
     String[] coord1 = firstBound.split("(?<=\\D)(?=\\d)", 2);
     String[] coord2 = secondBound.split("(?<=\\D)(?=\\d)", 2);
@@ -118,7 +116,7 @@ public class Reference implements Formula {
       for (int i = 0; i < zeroDiff; i++) {
         for (int j = 0; j < oneDiff; j++) {
           StringBuilder sb = new StringBuilder();
-          System.out.println(sb.append((char) (((coord1[0].charAt(coord1[0].length() - 1)) + i))));
+          sb.append((char) (((coord1[0].charAt(coord1[0].length() - 1)) + i)));
           sb.append(Integer.parseInt(coord1[1]) + j);
           bounds.add(sb.toString());
         }
@@ -134,7 +132,7 @@ public class Reference implements Formula {
    *
    * @return a list of coordinates being referenced.
    */
-  public List<Coord> getRefs() {
+  private List<Coord> getRefs() {
     List<Coord> references = new ArrayList<>();
     for (int i = 0; i < this.refs.size(); i++) {
       String[] coord1 = refs.get(i).split("(?<=\\D)(?=\\d)", 2);
@@ -187,7 +185,6 @@ public class Reference implements Formula {
 
       for (int i = 0; i < evaluatedRefs.size(); i++) {
         try {
-          System.out.println(mapOfCells.get(evaluatedRefs.get(i)).getEvaluatedData());
           sb.append(mapOfCells.get(evaluatedRefs.get(i)).getEvaluatedData());
           return new StringValue(sb.toString());
         }
