@@ -1,13 +1,10 @@
 package edu.cs3500.spreadsheets.model;
 
-import edu.cs3500.spreadsheets.model.reference.Reference;
 import edu.cs3500.spreadsheets.model.values.BooleanValue;
 import edu.cs3500.spreadsheets.model.values.NumValue;
 import edu.cs3500.spreadsheets.model.values.StringValue;
 import edu.cs3500.spreadsheets.model.values.Value;
 import edu.cs3500.spreadsheets.sexp.Sexp;
-import java.awt.SystemTray;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +54,7 @@ public class Function implements Formula {
    * @param values list of values to be operated on.
    * @return returns a final value to be set as evaluated value.
    */
-  public Value evaluateHelper(List<Value> values, String func) {
+  private Value evaluateHelper(List<Value> values, String func) {
     if (this.functionName.equals("SUM")) {
       double ans = 0;
       for (Formula a : values.subList(1, values.size())) {
