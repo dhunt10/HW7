@@ -6,11 +6,9 @@ import edu.cs3500.spreadsheets.model.Formula;
 import edu.cs3500.spreadsheets.model.values.NumValue;
 import edu.cs3500.spreadsheets.model.values.StringValue;
 import edu.cs3500.spreadsheets.model.values.Value;
-import java.awt.SystemTray;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.function.DoublePredicate;
 
 /**
  * Reference is a type that references any cell.
