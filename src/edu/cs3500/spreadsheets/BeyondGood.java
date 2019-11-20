@@ -7,6 +7,7 @@ import edu.cs3500.spreadsheets.model.Coord;
 import edu.cs3500.spreadsheets.model.Spreadsheet;
 import edu.cs3500.spreadsheets.model.WorksheetReader;
 import edu.cs3500.spreadsheets.view.ButtonGrid;
+import edu.cs3500.spreadsheets.view.CompositeView;
 import edu.cs3500.spreadsheets.view.GraphicsView;
 import edu.cs3500.spreadsheets.view.IView;
 import edu.cs3500.spreadsheets.view.TextView;
@@ -26,8 +27,8 @@ public class BeyondGood {
    * @param args any command-line arguments.
    */
   public static void main(String[] args) throws FileNotFoundException {
-    File infile = new File("/Users/darinhunt/Desktop/OOD/HW55555/HW5_UPDATED/test/test3.txt");
-    File outfile = new File("/Users/darinhunt/Desktop/OOD/HW55555/HW5_UPDATED/test/testresult.txt");
+    File infile = new File("/Users/satwikkamarthi/Documents/Northeastern University/Year 4/Fall/OOD/HW7/test/test3.txt");
+    File outfile = new File("/Users/satwikkamarthi/Documents/Northeastern University/Year 4/Fall/OOD/HW7/test/testresult.txt");
     String incell = null;
     String view = "graphic";
     for (int i = 0; i < args.length; i++) {
@@ -56,6 +57,9 @@ public class BeyondGood {
           break;
         case("-gui"):
           view = "graphic";
+          break;
+        case("-edit"):
+          view = "composite";
           break;
         default:
           throw new IllegalArgumentException("This is not how you use our application tough guy");
@@ -112,6 +116,8 @@ public class BeyondGood {
         createView.saveTo(saveTo.getPath());
         return createView;
       case("graphic"): return new GraphicsView(s.getCurrSpreadSheet(),  50, 50);
+      case("composite"):
+        return new CompositeView(s.getCurrSpreadSheet(), 50, 50);
       default: throw new IllegalArgumentException("This type of view is not supported");
     }
   }
