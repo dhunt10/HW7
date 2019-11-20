@@ -57,7 +57,7 @@ public class Function implements Formula {
    * @param values list of values to be operated on.
    * @return returns a final value to be set as evaluated value.
    */
-  public Value evaluateHelper(List<Value> values, String func) {
+  private Value evaluateHelper(List<Value> values, String func) {
     if (this.functionName.equals("SUM")) {
       double ans = 0;
       for (Formula a : values.subList(1, values.size())) {

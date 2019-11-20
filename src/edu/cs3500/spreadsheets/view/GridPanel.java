@@ -51,7 +51,7 @@ public class GridPanel extends JPanel {
           cell.add(field2, c);
         }
         if (i == 0 && j >= 1) {
-          Coord coord = new Coord(i+1, j );
+          Coord coord = new Coord(i + 1, j );
           JLabel field3 = new JLabel(String.valueOf(coord.row));
           cell.setBackground(new Color(74, 77, 145));
           cell.add(field3, c);

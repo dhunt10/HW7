@@ -64,7 +64,7 @@ public class Reference implements Formula {
    * @param firstBound the single cell to be parsed through.
    * @return returns a list of 1 single reference cell.
    */
-  public List<String> referenceListMaker(String firstBound) {
+  private List<String> referenceListMaker(String firstBound) {
 
     String[] coord1 = firstBound.split("(?<=\\D)(?=\\d)", 2);
 
@@ -85,7 +85,7 @@ public class Reference implements Formula {
    * @param secondBound range is defined with second bound as the start.
    * @return a list of strings that hold all the points being referenced.
    */
-  public List<String> referenceListMaker(String firstBound, String secondBound) {
+  private List<String> referenceListMaker(String firstBound, String secondBound) {
     List<String> bounds = new ArrayList<>();
     String[] coord1 = firstBound.split("(?<=\\D)(?=\\d)", 2);
     String[] coord2 = secondBound.split("(?<=\\D)(?=\\d)", 2);
@@ -134,7 +134,7 @@ public class Reference implements Formula {
    *
    * @return a list of coordinates being referenced.
    */
-  public List<Coord> getRefs() {
+  private List<Coord> getRefs() {
     List<Coord> references = new ArrayList<>();
     for (int i = 0; i < this.refs.size(); i++) {
       String[] coord1 = refs.get(i).split("(?<=\\D)(?=\\d)", 2);
