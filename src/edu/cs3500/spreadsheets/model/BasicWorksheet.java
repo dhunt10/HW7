@@ -1,6 +1,7 @@
 package edu.cs3500.spreadsheets.model;
 
 import edu.cs3500.spreadsheets.model.WorksheetReader.WorksheetBuilder;
+import edu.cs3500.spreadsheets.model.values.Value;
 import edu.cs3500.spreadsheets.sexp.Parser;
 import edu.cs3500.spreadsheets.sexp.Sexp;
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class BasicWorksheet implements Spreadsheet {
     this.currSpreadSheet = currSpreadSheet;
     this.coordList = coordList;
     fillBlank();
-    getEvaluatedCells();
+    getEvaluatedCells(currSpreadSheet, coordList);
   }
 
   /**
@@ -44,9 +45,9 @@ public class BasicWorksheet implements Spreadsheet {
    * This function is called directly after a spreadsheet has been created and will subsequently
    * be called after every new cell addition.
    */
-  public void getEvaluatedCells() {
+  public static void getEvaluatedCells(Map<Coord, Cell> currSpreadSheet, List<Coord> coordList) {
 
-    Sexp sexp = null;
+    Sexp sexp;
     for (Coord item : coordList) {
 
 
@@ -66,6 +67,25 @@ public class BasicWorksheet implements Spreadsheet {
           sexp.toString().split(" ")[0]));
     }
   }
+
+  public static Value getEvaluatedSingleCell(Spreadsheet s, String value) {
+    Sexp sexp = null;
+    if (value.contains("=")) {
+      sexp = Parser.parse(value.replaceAll("=", ""));
+    }
+
+    else {
+      if (value.equals("")) {
+        //TODO NOTHING
+      }
+      sexp = Parser.parse(value);
+    }
+    Formula deliverable = sexp.accept(new SexpToFormula());
+
+    return deliverable.evaluate(s.getCurrSpreadSheet(),
+        sexp.toString().split(" ")[0]);
+  }
+
 
   /**
    * This creates a builder of a blank cell as a redundancy of the blank cell constructor.
@@ -116,7 +136,12 @@ public class BasicWorksheet implements Spreadsheet {
         highRow = coord.row;
       }
     }
-    return highRow;
+    if (highRow == 0) {
+      return 100;
+    }
+    else {
+      return highRow;
+    }
   }
 
   /**
@@ -133,7 +158,13 @@ public class BasicWorksheet implements Spreadsheet {
       }
 
     }
-    return highCol;
+
+    if (highCol == 0) {
+      return 100;
+    }
+    else {
+      return highCol;
+    }
   }
 
   /**
@@ -151,6 +182,11 @@ public class BasicWorksheet implements Spreadsheet {
   @Override
   public Map<Coord, Cell> getCurrSpreadSheet() {
     return currSpreadSheet;
+  }
+
+  @Override
+  public List<Coord> getCurrList() {
+    return coordList;
   }
 
   /**
@@ -207,14 +243,18 @@ public class BasicWorksheet implements Spreadsheet {
      */
     @Override
     public BasicWorksheet createWorksheet () {
-      if (currSpreadSheet.size() == 0) {
-        throw new IllegalArgumentException("Null width or height");
-      }
       return new BasicWorksheet(currSpreadSheet, coordList);
     }
 
     public Map<Coord, Cell> getCurrSpreadSheet() {
       return currSpreadSheet;
     }
+
+    public List<Coord> getCurrList() {
+      return coordList;
+    }
+
   }
+
+
 }

@@ -1,5 +1,6 @@
 package edu.cs3500.spreadsheets.model;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,4 +34,9 @@ public interface Spreadsheet {
    * @return int that represents the highest row # in the spreadsheet.
    */
   int getMaxRow();
+
+  /**
+   *
+   */
+  List<Coord> getCurrList();
 }
