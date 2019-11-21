@@ -21,13 +21,14 @@ import java.util.Map;
  * The main class for our program.
  */
 public class BeyondGood {
+
   /**
    * Static void main.
    * @param args any command-line arguments.
    */
   public static void main(String[] args) throws FileNotFoundException {
 
-    File infile = new File("/Users/darinhunt/Desktop/OOD/HW7/test/test1.txt");
+    File infile = null;
     File outfile = null;
     String incell = null;
     String view = "graphic";
@@ -87,7 +88,7 @@ public class BeyondGood {
       IView v = createView(type, saveTo, b.createWorksheet());
       v.display();
 
-      /*updateCurrentView(new String("A1"), "5", b.createWorksheet());
+      updateCurrentView(new String("A1"), "5", b.createWorksheet());
 
 
       v = createView(type, saveTo, b.createWorksheet());
@@ -100,9 +101,10 @@ public class BeyondGood {
       v = createView(type, saveTo, b.createWorksheet());
       v.display();
 
-      BasicWorksheet.getEvaluatedCells(b.getCurrSpreadSheet(), b.getCurrList());
+      //BasicWorksheet.getEvaluatedCells(b.getCurrSpreadSheet(), b.getCurrList());
+      //TODO keeping ^ in here to remember what i was going for earlier. now update is auto?
 
-      v = createView(type, saveTo, b.createWorksheet());*/
+      v = createView(type, saveTo, b.createWorksheet());
       v.display();
     }
     else {

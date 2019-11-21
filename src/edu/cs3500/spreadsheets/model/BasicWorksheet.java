@@ -28,7 +28,7 @@ public class BasicWorksheet implements Spreadsheet {
     this.currSpreadSheet = currSpreadSheet;
     this.coordList = coordList;
     fillBlank();
-    getEvaluatedCells(currSpreadSheet, coordList);
+    getEvaluatedCells();
   }
 
   /**
@@ -45,7 +45,7 @@ public class BasicWorksheet implements Spreadsheet {
    * This function is called directly after a spreadsheet has been created and will subsequently
    * be called after every new cell addition.
    */
-  public static void getEvaluatedCells(Map<Coord, Cell> currSpreadSheet, List<Coord> coordList) {
+  public void getEvaluatedCells() {
 
     Sexp sexp;
     for (Coord item : coordList) {

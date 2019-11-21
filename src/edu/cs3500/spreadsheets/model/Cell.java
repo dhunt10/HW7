@@ -114,16 +114,14 @@ public class Cell {
   }
 
   /**
-   * This function is used to get back the raw string of the cell.
-   * @return raw string of the cell.
+
    */
   public void setRawString(String raw) {
     this.cellValueString = raw;
   }
 
   /**
-   * This function is used to get back the raw string of the cell.
-   * @return raw string of the cell.
+
    */
   public void setContents(String contents) {
 
