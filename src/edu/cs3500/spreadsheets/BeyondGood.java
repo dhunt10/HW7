@@ -15,7 +15,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Map;
 
 /**
  * The main class for our program.
@@ -27,11 +26,10 @@ public class BeyondGood {
    * @param args any command-line arguments.
    */
   public static void main(String[] args) throws FileNotFoundException {
-
     File infile = null;
     File outfile = null;
     String incell = null;
-    String view = "graphic";
+    String view = "composite";
     for (int i = 0; i < args.length; i++) {
       switch (args[i]) {
         case("-in"):

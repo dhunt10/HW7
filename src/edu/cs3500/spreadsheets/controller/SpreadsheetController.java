@@ -6,6 +6,6 @@ import java.io.File;
 
 public interface SpreadsheetController {
 
-  //void startProgram(String coordinate, String inString, Spreadsheet s);
+  void updateProgram(String coordinate, String inString, Spreadsheet s);
 
 }
