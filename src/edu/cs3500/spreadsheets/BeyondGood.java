@@ -6,7 +6,6 @@ import edu.cs3500.spreadsheets.model.Cell;
 import edu.cs3500.spreadsheets.model.Coord;
 import edu.cs3500.spreadsheets.model.Spreadsheet;
 import edu.cs3500.spreadsheets.model.WorksheetReader;
-import edu.cs3500.spreadsheets.view.ButtonGrid;
 import edu.cs3500.spreadsheets.view.CompositeView;
 import edu.cs3500.spreadsheets.view.GraphicsView;
 import edu.cs3500.spreadsheets.view.IView;
@@ -27,10 +26,10 @@ public class BeyondGood {
    * @param args any command-line arguments.
    */
   public static void main(String[] args) throws FileNotFoundException {
-    File infile = null;
-    File outfile = null;
+    File infile = new File("/Users/satwikkamarthi/Documents/Northeastern University/Year 4/Fall/OOD/HW7/test/test1.txt");
+    File outfile = new File("/Users/satwikkamarthi/Documents/Northeastern University/Year 4/Fall/OOD/HW7/test/result3.txt");;
     String incell = null;
-    String view = "graphic";
+    String view = "composite";
     for (int i = 0; i < args.length; i++) {
       switch (args[i]) {
         case("-in"):
@@ -65,9 +64,7 @@ public class BeyondGood {
           throw new IllegalArgumentException("This is not how you use our application tough guy");
       }
     }
-    if (infile == null && incell == null) {
-      throw new IllegalArgumentException("bro give us some inputs to work with");
-    }
+
 
     createSpreadSheet(infile, incell, view, outfile);
   }

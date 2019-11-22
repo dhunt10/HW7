@@ -1,5 +1,10 @@
 package edu.cs3500.spreadsheets.view;
 
-public interface CompositeViewAction {
+import java.awt.event.MouseListener;
+
+public interface CompositeViewAction extends MouseListener {
+
 
 }
+
+
