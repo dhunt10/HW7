@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class CompositeView implements IView{
 
-  GraphicsFrame frame;
+  CompositeFrame frame;
   Map<Coord, Cell> sheet;
   int width;
   int height;
@@ -23,20 +23,21 @@ public class CompositeView implements IView{
     this.sheet = sheet;
     this.width = width;
     this.height = height;
-    this.frame = new GraphicsFrame(sheet, width, height);
+    this.frame = new CompositeFrame(sheet, width, height);
   }
   @Override
   public void saveTo(String filePath) {
-
+    throw new UnsupportedOperationException("Can't save a visual view");
   }
 
   @Override
   public void display() {
-
+    frame.display();
   }
 
   @Override
   public String buildTextView() {
-    return null;
-  }
+    throw new UnsupportedOperationException(
+        "Can't display textual view of visual view");
+   }
 }
