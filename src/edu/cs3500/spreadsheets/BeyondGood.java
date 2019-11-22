@@ -79,6 +79,7 @@ public class BeyondGood {
   private static void createSpreadSheet(File file, String cell, String type, File saveTo) throws FileNotFoundException {
     Builder b = new Builder();
     BufferedReader reader;
+    Spreadsheet spreadsheet;
 
     if (file == null && type == "text") {
       throw new IllegalArgumentException("text needs a file");
@@ -115,8 +116,10 @@ public class BeyondGood {
           String[] phrase = line.split(" ", 2);
           String coordinate = phrase[0];
           String formula = phrase[1];
-          int col = Coord.colNameToIndex(String.valueOf(coordinate.charAt(0)));
-          int row = Integer.parseInt(String.valueOf(coordinate.charAt(1)));
+          String[] coord1 = coordinate.split("(?<=\\D)(?=\\d)", 2);
+
+          int col = Coord.colNameToIndex(coord1[0]);
+          int row = Integer.parseInt(coord1[1]);
           b.createCell(col, row, formula);
           line = reader.readLine();
         }
@@ -126,14 +129,16 @@ public class BeyondGood {
       }
       FileReader fileReader = new FileReader(file);
       Spreadsheet s = WorksheetReader.read(BasicWorksheet.defaultBuilder(), fileReader);
-      Map<Coord, Cell> board = s.getCurrSpreadSheet();
 
       b.createWorksheet();
 
       IView v = createView(type, saveTo, s);
       v.display();
     }
+
   }
+
+
 
   public static void updateCurrentView(String coord, String value, Spreadsheet s) {
     String[] coord1 = coord.split("(?<=\\D)(?=\\d)", 2);

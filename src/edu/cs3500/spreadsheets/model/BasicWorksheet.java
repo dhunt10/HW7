@@ -246,14 +246,6 @@ public class BasicWorksheet implements Spreadsheet {
       return new BasicWorksheet(currSpreadSheet, coordList);
     }
 
-    public Map<Coord, Cell> getCurrSpreadSheet() {
-      return currSpreadSheet;
-    }
-
-    public List<Coord> getCurrList() {
-      return coordList;
-    }
-
   }
 
 
