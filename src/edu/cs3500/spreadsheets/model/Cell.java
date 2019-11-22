@@ -2,6 +2,8 @@ package edu.cs3500.spreadsheets.model;
 
 import edu.cs3500.spreadsheets.model.values.StringValue;
 import edu.cs3500.spreadsheets.model.values.Value;
+import edu.cs3500.spreadsheets.sexp.Parser;
+import edu.cs3500.spreadsheets.sexp.Sexp;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.BorderFactory;
@@ -109,6 +111,30 @@ public class Cell {
    */
   public String getRawString() {
     return this.cellValueString;
+  }
+
+  /**
+
+   */
+  public void setRawString(String raw) {
+    this.cellValueString = raw;
+  }
+
+  /**
+
+   */
+  public void setContents(String contents) {
+
+
+    Sexp sexp;
+    if (contents.contains("=")) {
+      sexp = Parser.parse(contents.replaceAll("=", ""));
+    }
+    else {
+      sexp = Parser.parse(contents);
+    }
+    Formula formula = sexp.accept(new SexpToFormula());
+    this.contents = formula;
   }
 
 }

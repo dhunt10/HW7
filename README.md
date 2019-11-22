@@ -1,14 +1,24 @@
-# HW5_UPDATED
+# HW7
 ### By Darin and Satwik
+
+### ***Changes Made***
+##### 
+we have added in a single change function called updateCurrentView
+we have added in a evaluate single cell function, which in turn evaluates one single cell and 
+checks to see if any other cells rely on it. The way our design currently works is we 
+have a builder which makes a spread sheet with or without an infile. Then once the file is
+built we can then add to it with the newly made updateCurrentView function. We have obviously
+added in a new dynamic view which we can manipulate after the creation of the spreadsheet. 
+Every time we make changes to the spreadsheet we then update the dynamic view. 
 
 ##### Status
 
 - [x] Model
-- [ ] Model Test
+- [x] Model Test
 - [x] Text View
-- [ ] Text View Test
+- [x] Text View Test
 - [x] Graphical View
-- [ ] Graphical View Test
+- [x] Graphical View Test
 - [ ] Controller
 - [ ] Controller Test
 - [ ] Additional View 

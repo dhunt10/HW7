@@ -2,6 +2,7 @@ package edu.cs3500.spreadsheets.view;
 
 import edu.cs3500.spreadsheets.model.Cell;
 import edu.cs3500.spreadsheets.model.Coord;
+import edu.cs3500.spreadsheets.model.Spreadsheet;
 import java.util.Map;
 
 /**
@@ -14,6 +15,7 @@ public class GraphicsView implements IView{
   int height;
   int x;
   int y;
+  Spreadsheet spreadsheet;
 
   /**
    *
@@ -21,11 +23,12 @@ public class GraphicsView implements IView{
    * @param width
    * @param height
    */
-  public GraphicsView(Map<Coord, Cell> sheet, int width, int height) {
-    this.sheet = sheet;
+  public GraphicsView(Spreadsheet spreadsheet, int width, int height) {
+    this.sheet = spreadsheet.getCurrSpreadSheet();
     this.width = width;
     this.height = height;
     this.frame = new GraphicsFrame(sheet, width, height);
+    this.spreadsheet = spreadsheet;
   }
 
 
