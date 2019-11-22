@@ -144,7 +144,6 @@ public class BeyondGood {
     String[] coord1 = coord.split("(?<=\\D)(?=\\d)", 2);
     int col;
     int row;
-
     try {
       col = Coord.colNameToIndex(String.valueOf(coord1[0]));
       row = Integer.parseInt(coord1[1]);
@@ -164,9 +163,9 @@ public class BeyondGood {
         TextView createView = new TextView(s.getCurrSpreadSheet(), 5, 5);
         createView.saveTo(saveTo.getPath());
         return createView;
-      case("graphic"): return new GraphicsView(s.getCurrSpreadSheet(),  50, 50);
+      case("graphic"): return new GraphicsView(s,  50, 50);
       case("composite"):
-        return new CompositeView(s.getCurrSpreadSheet(), 50, 50);
+        return new CompositeView(s, 50, 50);
       default: throw new IllegalArgumentException("This type of view is not supported");
     }
   }

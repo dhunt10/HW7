@@ -14,8 +14,8 @@ import java.util.Scanner;
 public class CompositeSpreadsheetController implements SpreadsheetController {
 
   /*@Override
-  public void startProgram(String coordinate, String inString) {
-    BeyondGood.updateCurrentView(coordinate, inString);
+  public void startProgram(String coordinate, String inString, Spreadsheet s) {
+    BeyondGood.updateCurrentView(coordinate, inString, s);
   }*/
 
 }

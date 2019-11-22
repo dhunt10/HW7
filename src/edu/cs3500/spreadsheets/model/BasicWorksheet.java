@@ -18,6 +18,7 @@ public class BasicWorksheet implements Spreadsheet {
 
   private final Map<Coord, Cell> currSpreadSheet;
   private List<Coord> coordList;
+  public Spreadsheet spreadsheet;
 
   /**
    * This build the worksheet with given list of cells.
