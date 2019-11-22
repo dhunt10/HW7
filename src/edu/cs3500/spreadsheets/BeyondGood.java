@@ -1,8 +1,8 @@
 package edu.cs3500.spreadsheets;
 
+import edu.cs3500.spreadsheets.controller.CompositeSpreadsheetController;
 import edu.cs3500.spreadsheets.model.BasicWorksheet;
 import edu.cs3500.spreadsheets.model.BasicWorksheet.Builder;
-import edu.cs3500.spreadsheets.model.Cell;
 import edu.cs3500.spreadsheets.model.Coord;
 import edu.cs3500.spreadsheets.model.Spreadsheet;
 import edu.cs3500.spreadsheets.model.WorksheetReader;
@@ -87,16 +87,10 @@ public class BeyondGood {
       IView v = createView(type, saveTo, b.createWorksheet());
       v.display();
 
-      updateCurrentView(new String("A1"), "5", b.createWorksheet());
+      //updateCurrentView(new String("A1"), "2", b.createWorksheet());
+      //CompositeSpreadsheetController compositeSpreadsheetController = new CompositeSpreadsheetController();
+      //compositeSpreadsheetController.updateProgram(new String("A1"), "5", b.createWorksheet());
 
-
-      v = createView(type, saveTo, b.createWorksheet());
-      v.display();
-      updateCurrentView(new String("A2"), "=(PROD 5 A1)", b.createWorksheet());
-      v = createView(type, saveTo, b.createWorksheet());
-      v.display();
-
-      updateCurrentView(new String("A1"), "2", b.createWorksheet());
       v = createView(type, saveTo, b.createWorksheet());
       v.display();
 
