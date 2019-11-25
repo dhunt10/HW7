@@ -69,7 +69,7 @@ public class BeyondGood {
     createSpreadSheet(infile, incell, view, outfile);
   }
 
-    /**
+  /**
    * Function that creates a spreadsheet by taking in a file.
    * @param file the name of the file.
    * @param cell cell.
@@ -160,7 +160,7 @@ public class BeyondGood {
         return createView;
       case("graphic"): return new GraphicsView(s,  50, 50);
       case("composite"):
-        return new CompositeView(s, 50, 50);
+        return new CompositeView(s.getCurrSpreadSheet(), 50, 50, s);
       default: throw new IllegalArgumentException("This type of view is not supported");
     }
   }

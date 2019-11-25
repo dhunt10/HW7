@@ -1,12 +1,11 @@
 package edu.cs3500.spreadsheets.view;
 
-import edu.cs3500.spreadsheets.BeyondGood;
 import edu.cs3500.spreadsheets.controller.CompositeSpreadsheetController;
+import edu.cs3500.spreadsheets.BeyondGood;
 import edu.cs3500.spreadsheets.model.Cell;
 import edu.cs3500.spreadsheets.model.Coord;
 import edu.cs3500.spreadsheets.model.Spreadsheet;
 import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
@@ -19,7 +18,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
 public class CompositeFrame extends JFrame {
   private Map<Coord, Cell> curr;
@@ -30,7 +28,7 @@ public class CompositeFrame extends JFrame {
   private JTextField rawContents;
   private JButton confirm;
   private JButton cancel;
-  public Spreadsheet spreadsheet;
+  private Spreadsheet model;
 
   /**
    *
@@ -38,10 +36,11 @@ public class CompositeFrame extends JFrame {
    * @param width
    * @param height
    */
-  public CompositeFrame(Spreadsheet spreadsheet,
-      int width, int height) {
+  public CompositeFrame(Map<Coord, Cell> curr,
+      int width, int height, Spreadsheet model) {
+
     super();
-    this.curr = spreadsheet.getCurrSpreadSheet();
+    this.model = model;
     this.setPreferredSize(new Dimension(width,  height));
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -72,7 +71,8 @@ public class CompositeFrame extends JFrame {
         new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent e) {
-              rawContents.setText("");
+            rawContents.setText("");
+
           }
         });
     editOptions.add(cancel, c);
@@ -83,23 +83,10 @@ public class CompositeFrame extends JFrame {
     c.gridy = 0;
     c.ipadx = 10;
     c.ipady = 30;
-
     editOptions.add(confirm,c);
-    confirm.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-
-        String cont = rawContents.getText();
-        BeyondGood.updateCurrentView("A1", cont, spreadsheet);
-        System.out.println(spreadsheet.getCellAt(new Coord(1,1)));
-
-        SwingUtilities.updateComponentTreeUI(getFrames()[0]);
-        getContentPane().validate();
-        getContentPane().repaint();
-      }
-    });
 
 
+    //textfield
     rawContents = new JTextField();
     rawContents.setPreferredSize(new Dimension(10, 30));
     c.gridx = 0;
@@ -107,7 +94,8 @@ public class CompositeFrame extends JFrame {
     c.ipadx = 10;
     c.ipady = 30;
     editOptions.add(rawContents, c);
-    rawContents.setText("hello");
+
+
 
     this.add(editOptions, BorderLayout.NORTH);
 
@@ -120,14 +108,7 @@ public class CompositeFrame extends JFrame {
 
 
 
-  this.gridPanel.addMouseListener(new CompositeSpreadsheetController());
-
-
-
-
-
-
-
+    this.gridPanel.addMouseListener(new CompositeSpreadsheetController(model, width, height, rawContents, confirm));
 
     //graphicsPanel.setcurrState(curr);
     this.pack();
