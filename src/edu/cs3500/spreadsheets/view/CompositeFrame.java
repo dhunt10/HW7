@@ -1,13 +1,17 @@
 package edu.cs3500.spreadsheets.view;
 
 import edu.cs3500.spreadsheets.BeyondGood;
+import edu.cs3500.spreadsheets.controller.CompositeSpreadsheetController;
 import edu.cs3500.spreadsheets.model.Cell;
 import edu.cs3500.spreadsheets.model.Coord;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Map;
+import javax.management.monitor.MonitorSettingException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -124,6 +128,7 @@ public class CompositeFrame extends JFrame {
    *
    */
   public void display() {
+    CompositeSpreadsheetController compositeSpreadsheetController = new CompositeSpreadsheetController();
     this.setVisible(true);
   }
 }

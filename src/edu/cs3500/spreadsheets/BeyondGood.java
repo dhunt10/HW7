@@ -1,6 +1,6 @@
 package edu.cs3500.spreadsheets;
 
-import edu.cs3500.spreadsheets.controller.CompositeSpreadsheetController;
+//import edu.cs3500.spreadsheets.controller.CompositeSpreadsheetController;
 import edu.cs3500.spreadsheets.model.BasicWorksheet;
 import edu.cs3500.spreadsheets.model.BasicWorksheet.Builder;
 import edu.cs3500.spreadsheets.model.Coord;
@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ConcurrentModificationException;
 
 /**
  * The main class for our program.
@@ -90,6 +91,8 @@ public class BeyondGood {
       //updateCurrentView(new String("A1"), "2", b.createWorksheet());
       //CompositeSpreadsheetController compositeSpreadsheetController = new CompositeSpreadsheetController();
       //compositeSpreadsheetController.updateProgram(new String("A1"), "5", b.createWorksheet());
+      //compositeSpreadsheetController.updateProgram(new String("A2"), "=(PROD A1 6)",b.createWorksheet());
+      //compositeSpreadsheetController.updateProgram(new String("A1"), "9", b.createWorksheet());
 
       v = createView(type, saveTo, b.createWorksheet());
       v.display();
