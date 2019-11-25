@@ -13,6 +13,7 @@ public class GraphicsView implements IView{
   Map<Coord, Cell> sheet;
   int width;
   int height;
+  GridPanel cells;
   int x;
   int y;
   Spreadsheet spreadsheet;
@@ -28,6 +29,7 @@ public class GraphicsView implements IView{
     this.width = width;
     this.height = height;
     this.frame = new GraphicsFrame(sheet, width, height);
+    this.cells = frame.getGridPanel();
     this.spreadsheet = spreadsheet;
   }
 
@@ -47,4 +49,21 @@ public class GraphicsView implements IView{
     throw new UnsupportedOperationException(
         "Can't display textual view of visual view");
   }
+
+
+  @Override
+  public CompositeFrame getCompositeFrame() {
+    throw new UnsupportedOperationException(
+        "No Composite Frame in this view");
+  }
+
+  public GridPanel getCells(){
+    return this.cells;
+  }
+
+  @Override
+  public GraphicsFrame getGraphicsFrame(){
+    return this.frame;
+  }
+
 }

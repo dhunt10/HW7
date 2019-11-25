@@ -1,5 +1,6 @@
 package edu.cs3500.spreadsheets.view;
 
+import edu.cs3500.spreadsheets.controller.CompositeSpreadsheetController;
 import edu.cs3500.spreadsheets.BeyondGood;
 import edu.cs3500.spreadsheets.model.Cell;
 import edu.cs3500.spreadsheets.model.Coord;
@@ -7,6 +8,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -60,6 +63,14 @@ public class CompositeFrame extends JFrame {
     c.ipadx = 10;
     c.ipady = 30;
 
+    //Cancel Button Action, to clear the text
+    cancel.addActionListener(
+        new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent e) {
+              rawContents.setText("");
+          }
+        });
     editOptions.add(cancel, c);
 
     confirm = new JButton("Confirm");
@@ -72,7 +83,7 @@ public class CompositeFrame extends JFrame {
     editOptions.add(confirm,c);
 
 
-
+    //textfield
     rawContents = new JTextField();
     rawContents.setPreferredSize(new Dimension(10, 30));
     c.gridx = 0;
@@ -80,24 +91,19 @@ public class CompositeFrame extends JFrame {
     c.ipadx = 10;
     c.ipady = 30;
     editOptions.add(rawContents, c);
-    //editOptions.add(cancel);
-    //rawContents = new JTextField();
-    //editOptions.add(rawContents);
-    //c.gridx = 0;
-    //c.gridy = 2;
-    //this.add(confirm, BorderLayout.BEFORE_FIRST_LINE);
-    //this.add(cancel, BorderLayout.BEFORE_FIRST_LINE);
+
     this.add(editOptions, BorderLayout.NORTH);
 
-    //add Text field to take in raw inputs
 
 
     //add the grid of cells
     gridPanel = new GridPanel(width, height, curr);
-
-    //add the scrollbar for the panel
     JScrollPane scrollBar=new JScrollPane(gridPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     this.add(scrollBar, BorderLayout.CENTER);
+
+
+
+  this.gridPanel.addMouseListener(new CompositeSpreadsheetController());
 
 
 
@@ -125,5 +131,9 @@ public class CompositeFrame extends JFrame {
    */
   public void display() {
     this.setVisible(true);
+  }
+
+  public GridPanel getGridPanel(){
+    return this.gridPanel;
   }
 }

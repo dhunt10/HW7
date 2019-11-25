@@ -2,17 +2,26 @@ package edu.cs3500.spreadsheets.view;
 
 import edu.cs3500.spreadsheets.model.Cell;
 import edu.cs3500.spreadsheets.model.Coord;
-
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
-
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
  */
 public class GridPanel extends JPanel {
   private Map<Coord, Cell> curr;
+
+  //add this list so that you will be able to access cells based on coordinates
+  private ArrayList<Cell> cellsOnScreen;
+  private Map<Point, Cell> cellScreenLocations;
 
 
   /**
@@ -24,6 +33,8 @@ public class GridPanel extends JPanel {
     setLayout(new GridBagLayout());
     GridBagConstraints c = new GridBagConstraints();
     c.fill = GridBagConstraints.HORIZONTAL;
+    cellScreenLocations = new HashMap<>();
+    cellsOnScreen = new ArrayList<>();
 
     //first loop to create empty sheet
     setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -31,6 +42,7 @@ public class GridPanel extends JPanel {
       for (int j = 0; j < row; j++) {
         JLabel field = new JLabel("     ");
         Cell template = new Cell(new Coord(i + 1, j + 1));
+        cellsOnScreen.add(template);
         JPanel cell = template.drawSelf();
         cell.add(field);
         cell.setBackground(new Color(196, 198, 255));
@@ -39,6 +51,7 @@ public class GridPanel extends JPanel {
         c.ipadx = 30;
         c.ipady = 10;
         cell.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
         if (j == 0 && i == 0) {
           cell.setBackground(new Color(74, 77, 145));
         }
@@ -53,6 +66,8 @@ public class GridPanel extends JPanel {
           cell.setBackground(new Color(74, 77, 145));
           cell.add(field3, c);
         }
+
+        //this is for the headers, needs to be modified.
         for (Coord coord: curr.keySet()) {
           if(coord.row == j && coord.col == i)
             add(curr.get(coord).drawSelf(), c); //adds labels to grid
@@ -71,6 +86,13 @@ public class GridPanel extends JPanel {
     this.curr = curr;
   }
 
+  public Map getcellScreenLocation(){
+    return this.cellScreenLocations;
+  }
+
+  public ArrayList<Cell> getCellsOnScreen(){
+    return this.cellsOnScreen;
+  }
 
 }
 

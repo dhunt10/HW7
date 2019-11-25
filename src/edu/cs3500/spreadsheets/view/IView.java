@@ -22,4 +22,8 @@ public interface IView {
    * @return
    */
   String buildTextView();
+
+  GraphicsFrame getGraphicsFrame();
+  CompositeFrame getCompositeFrame();
+  GridPanel getCells();
 }

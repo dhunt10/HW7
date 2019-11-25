@@ -11,6 +11,7 @@ public class CompositeView implements IView{
   Map<Coord, Cell> sheet;
   int width;
   int height;
+  GridPanel cells;
   int x;
   int y;
   Spreadsheet spreadsheet;
@@ -27,6 +28,7 @@ public class CompositeView implements IView{
     this.height = height;
     this.spreadsheet = spreadsheet;
     this.frame = new CompositeFrame(sheet, width, height);
+    this.cells = frame.getGridPanel();
   }
   @Override
   public void saveTo(String filePath) {
@@ -43,4 +45,20 @@ public class CompositeView implements IView{
     throw new UnsupportedOperationException(
         "Can't display textual view of visual view");
    }
+
+  @Override
+  public GraphicsFrame getGraphicsFrame() {
+    throw new UnsupportedOperationException(
+        "No Graphics Frame in this view");
+  }
+
+  @Override
+  public CompositeFrame getCompositeFrame() {
+    return this.frame;
+  }
+
+  @Override
+  public GridPanel getCells() {
+    return this.cells;
+  }
 }
