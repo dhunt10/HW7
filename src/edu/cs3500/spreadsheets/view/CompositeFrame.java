@@ -4,20 +4,22 @@ import edu.cs3500.spreadsheets.BeyondGood;
 import edu.cs3500.spreadsheets.controller.CompositeSpreadsheetController;
 import edu.cs3500.spreadsheets.model.Cell;
 import edu.cs3500.spreadsheets.model.Coord;
+import edu.cs3500.spreadsheets.model.Spreadsheet;
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Map;
-import javax.management.monitor.MonitorSettingException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 public class CompositeFrame extends JFrame {
   private Map<Coord, Cell> curr;
@@ -28,6 +30,7 @@ public class CompositeFrame extends JFrame {
   private JTextField rawContents;
   private JButton confirm;
   private JButton cancel;
+  public Spreadsheet spreadsheet;
 
   /**
    *
@@ -35,10 +38,10 @@ public class CompositeFrame extends JFrame {
    * @param width
    * @param height
    */
-  public CompositeFrame(Map<Coord, Cell> curr,
+  public CompositeFrame(Spreadsheet spreadsheet,
       int width, int height) {
-
     super();
+    this.curr = spreadsheet.getCurrSpreadSheet();
     this.setPreferredSize(new Dimension(width,  height));
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -64,6 +67,14 @@ public class CompositeFrame extends JFrame {
     c.ipadx = 10;
     c.ipady = 30;
 
+    //Cancel Button Action, to clear the text
+    cancel.addActionListener(
+        new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent e) {
+              rawContents.setText("");
+          }
+        });
     editOptions.add(cancel, c);
 
     confirm = new JButton("Confirm");
@@ -74,7 +85,19 @@ public class CompositeFrame extends JFrame {
     c.ipady = 30;
 
     editOptions.add(confirm,c);
+    confirm.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
 
+        String cont = rawContents.getText();
+        BeyondGood.updateCurrentView("A1", cont, spreadsheet);
+        System.out.println(spreadsheet.getCellAt(new Coord(1,1)));
+
+        SwingUtilities.updateComponentTreeUI(getFrames()[0]);
+        getContentPane().validate();
+        getContentPane().repaint();
+      }
+    });
 
 
     rawContents = new JTextField();
@@ -84,24 +107,20 @@ public class CompositeFrame extends JFrame {
     c.ipadx = 10;
     c.ipady = 30;
     editOptions.add(rawContents, c);
-    //editOptions.add(cancel);
-    //rawContents = new JTextField();
-    //editOptions.add(rawContents);
-    //c.gridx = 0;
-    //c.gridy = 2;
-    //this.add(confirm, BorderLayout.BEFORE_FIRST_LINE);
-    //this.add(cancel, BorderLayout.BEFORE_FIRST_LINE);
+    rawContents.setText("hello");
+
     this.add(editOptions, BorderLayout.NORTH);
 
-    //add Text field to take in raw inputs
 
 
     //add the grid of cells
     gridPanel = new GridPanel(width, height, curr);
-
-    //add the scrollbar for the panel
     JScrollPane scrollBar=new JScrollPane(gridPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     this.add(scrollBar, BorderLayout.CENTER);
+
+
+
+  this.gridPanel.addMouseListener(new CompositeSpreadsheetController(rawContents));
 
 
 
@@ -128,7 +147,10 @@ public class CompositeFrame extends JFrame {
    *
    */
   public void display() {
-    CompositeSpreadsheetController compositeSpreadsheetController = new CompositeSpreadsheetController();
     this.setVisible(true);
+  }
+
+  public GridPanel getGridPanel(){
+    return this.gridPanel;
   }
 }

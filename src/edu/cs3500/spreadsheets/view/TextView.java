@@ -48,5 +48,21 @@ public class TextView implements IView {
     return output.toString();
   }
 
+  @Override
+  public GraphicsFrame getGraphicsFrame() {
+    throw new UnsupportedOperationException(
+        "No Frame in this view");
+  }
+
+  @Override
+  public CompositeFrame getCompositeFrame() {
+    throw new UnsupportedOperationException(
+        "No Frame in this view");  }
+
+  @Override
+  public GridPanel getCells() {
+    throw new UnsupportedOperationException(
+        "No GridPanel in this view");  }
+
 
 }
