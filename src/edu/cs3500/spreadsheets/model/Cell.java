@@ -75,6 +75,8 @@ public class Cell {
     this.evaluatedData = value;
   }
 
+
+
   public JPanel drawSelf() {
     JLabel field = new JLabel();
     if (this.toString() == "") {
@@ -91,6 +93,24 @@ public class Cell {
     cell.setBorder(BorderFactory.createLineBorder(Color.white));
     return cell;
   }
+
+  public JPanel highlightSelf() {
+    JLabel field = new JLabel();
+    if (this.toString() == "") {
+      field = new JLabel(" ");
+    }
+    else {
+      field = new JLabel(this.toString());
+    }
+
+    JPanel cell = new JPanel();
+    cell.add(field);
+    cell.setBackground(new Color(255, 255, 255));
+    cell.setPreferredSize(new Dimension(50, 20));
+    cell.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+    return cell;
+  }
+
 
   /**
    * This creates a String representing our cell.
