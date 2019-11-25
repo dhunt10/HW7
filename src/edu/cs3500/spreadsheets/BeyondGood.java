@@ -103,6 +103,12 @@ public class BeyondGood {
 
     IView v = createView(type, saveTo, s);
     v.display();
+    for(int i = 0; i < v.getCells().getCellsOnScreen().size(); i++){
+      //System.out.println(v.getCells().getComponentCount());
+      v.getCells().getcellScreenLocation().put(v.getCells().getComponent(i).getLocationOnScreen(), v.getCells().getCellsOnScreen().get(i));
+    }
+    System.out.println(v.getCells().getcellScreenLocation().size());
+
   }
 
   public static IView createView(String type, File saveTo, Spreadsheet s) {

@@ -59,4 +59,8 @@ public class GraphicsFrame extends JFrame {
   public void display() {
     this.setVisible(true);
   }
+
+  public GridPanel getGridPanel(){
+    return this.gridPanel;
+  }
 }
