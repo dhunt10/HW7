@@ -119,7 +119,7 @@ public class BeyondGood {
         return createView;
       case("graphic"): return new GraphicsView(s.getCurrSpreadSheet(),  50, 50);
       case("composite"):
-        return new CompositeView(s.getCurrSpreadSheet(), 50, 50);
+        return new CompositeView(s.getCurrSpreadSheet(), 50, 50, s);
       default: throw new IllegalArgumentException("This type of view is not supported");
     }
   }

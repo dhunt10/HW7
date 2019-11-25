@@ -2,6 +2,7 @@ package edu.cs3500.spreadsheets.view;
 
 import edu.cs3500.spreadsheets.model.Cell;
 import edu.cs3500.spreadsheets.model.Coord;
+import edu.cs3500.spreadsheets.model.Spreadsheet;
 import java.util.Map;
 
 public class CompositeView implements IView{
@@ -11,6 +12,8 @@ public class CompositeView implements IView{
   int width;
   int height;
   GridPanel cells;
+  Spreadsheet model;
+  IView view;
 
   /**
    *
@@ -18,11 +21,13 @@ public class CompositeView implements IView{
    * @param width
    * @param height
    */
-  public CompositeView(Map<Coord, Cell> sheet, int width, int height) {
+  public CompositeView(Map<Coord, Cell> sheet, int width, int height, Spreadsheet model) {
+    this.view = view;
+    this.model = model;
     this.sheet = sheet;
     this.width = width;
     this.height = height;
-    this.frame = new CompositeFrame(sheet, width, height);
+    this.frame = new CompositeFrame(sheet, width, height, model);
     this.cells = frame.getGridPanel();
   }
   @Override

@@ -3,6 +3,7 @@ package edu.cs3500.spreadsheets.view;
 import edu.cs3500.spreadsheets.controller.CompositeSpreadsheetController;
 import edu.cs3500.spreadsheets.model.Cell;
 import edu.cs3500.spreadsheets.model.Coord;
+import edu.cs3500.spreadsheets.model.Spreadsheet;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -26,6 +27,7 @@ public class CompositeFrame extends JFrame {
   private JTextField rawContents;
   private JButton confirm;
   private JButton cancel;
+  private Spreadsheet model;
 
   /**
    *
@@ -34,9 +36,10 @@ public class CompositeFrame extends JFrame {
    * @param height
    */
   public CompositeFrame(Map<Coord, Cell> curr,
-      int width, int height) {
+      int width, int height, Spreadsheet model) {
 
     super();
+    this.model = model;
     this.setPreferredSize(new Dimension(width,  height));
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -102,7 +105,7 @@ public class CompositeFrame extends JFrame {
 
 
 
-  this.gridPanel.addMouseListener(new CompositeSpreadsheetController());
+  this.gridPanel.addMouseListener(new CompositeSpreadsheetController(model, width, height));
 
 
 
