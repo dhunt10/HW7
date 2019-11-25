@@ -12,9 +12,8 @@ public class CompositeView implements IView{
   int width;
   int height;
   GridPanel cells;
-  int x;
-  int y;
-  Spreadsheet spreadsheet;
+  Spreadsheet model;
+  IView view;
 
   /**
    *
@@ -22,12 +21,13 @@ public class CompositeView implements IView{
    * @param width
    * @param height
    */
-  public CompositeView(Spreadsheet spreadsheet, int width, int height) {
-    this.sheet = spreadsheet.getCurrSpreadSheet();
+  public CompositeView(Map<Coord, Cell> sheet, int width, int height, Spreadsheet model) {
+    this.view = view;
+    this.model = model;
+    this.sheet = sheet;
     this.width = width;
     this.height = height;
-    this.spreadsheet = spreadsheet;
-    this.frame = new CompositeFrame(sheet, width, height);
+    this.frame = new CompositeFrame(sheet, width, height, model);
     this.cells = frame.getGridPanel();
   }
   @Override

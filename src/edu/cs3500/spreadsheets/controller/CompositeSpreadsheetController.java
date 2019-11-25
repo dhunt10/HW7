@@ -1,9 +1,11 @@
 package edu.cs3500.spreadsheets.controller;
 
 import edu.cs3500.spreadsheets.model.Cell;
+import edu.cs3500.spreadsheets.model.Spreadsheet;
 import edu.cs3500.spreadsheets.view.CompositeViewButtonActions;
 import edu.cs3500.spreadsheets.view.CompositeViewMouseActions;
 import edu.cs3500.spreadsheets.view.GridPanel;
+import edu.cs3500.spreadsheets.view.IView;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -15,12 +17,24 @@ import javax.swing.border.Border;
 
 
 public class CompositeSpreadsheetController implements SpreadsheetController,
-    CompositeViewMouseActions, CompositeViewButtonActions {
+    CompositeViewMouseActions, CompositeViewButtonActions{
+
+    private Spreadsheet model;
+    private IView view;
+    private int maxCols;
+    private int maxRows;
+
+  public CompositeSpreadsheetController(Spreadsheet model, int maxCols, int maxRows){
+      this.model = model;
+      this.view =view;
+      this.maxCols = maxCols;
+      this.maxRows = maxRows;
+  }
 
   //I know i am not using a controller correctly because this does not pass in a model and does
   //not change the view based on the model that it inputs for the mouse things.
 
-  //Also another issue is that i hardcoded the goddamn for loops with a hard number, idk what
+  //Also another issue is that i hardcoded the goddamn for loops with a number, idk what
   //to do about htis, should this be based on the model???
 
 
@@ -42,13 +56,13 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
        cell.setBackground(new Color(196, 198, 255));
       }
 
-      for(int width = 1; width <= 3921; width += 80){
+      for(int width = 1; width <= 1 + maxCols*80; width += 80){
         c.getComponentAt(width, 1).setBackground(new Color(74, 77, 145));
         headerCells.add(c.getComponentAt(width, 1));
 
       }
 
-      for(int height = 1; height <= 1501; height += 30){
+      for(int height = 1; height <= 1 + maxRows*30; height += 30){
         c.getComponentAt(1, height).setBackground(new Color(74, 77, 145));
         headerCells.add(c.getComponentAt(1, height));
       }
