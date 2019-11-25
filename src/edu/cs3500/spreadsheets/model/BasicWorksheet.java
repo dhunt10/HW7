@@ -1,6 +1,7 @@
 package edu.cs3500.spreadsheets.model;
 
 import edu.cs3500.spreadsheets.model.WorksheetReader.WorksheetBuilder;
+import edu.cs3500.spreadsheets.model.values.StringValue;
 import edu.cs3500.spreadsheets.model.values.Value;
 import edu.cs3500.spreadsheets.sexp.Parser;
 import edu.cs3500.spreadsheets.sexp.Sexp;
@@ -77,7 +78,7 @@ public class BasicWorksheet implements Spreadsheet {
 
     else {
       if (value.equals("")) {
-        //TODO NOTHING
+        return new StringValue("");
       }
       sexp = Parser.parse(value);
     }

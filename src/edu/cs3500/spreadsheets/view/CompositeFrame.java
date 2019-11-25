@@ -71,7 +71,8 @@ public class CompositeFrame extends JFrame {
         new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent e) {
-              rawContents.setText("");
+            rawContents.setText("");
+
           }
         });
     editOptions.add(cancel, c);
@@ -82,7 +83,6 @@ public class CompositeFrame extends JFrame {
     c.gridy = 0;
     c.ipadx = 10;
     c.ipady = 30;
-
     editOptions.add(confirm,c);
 
 
@@ -95,6 +95,8 @@ public class CompositeFrame extends JFrame {
     c.ipady = 30;
     editOptions.add(rawContents, c);
 
+
+
     this.add(editOptions, BorderLayout.NORTH);
 
 
@@ -106,14 +108,7 @@ public class CompositeFrame extends JFrame {
 
 
 
-  this.gridPanel.addMouseListener(new CompositeSpreadsheetController(model, width, height));
-
-
-
-
-
-
-
+    this.gridPanel.addMouseListener(new CompositeSpreadsheetController(model, width, height, rawContents, confirm));
 
     //graphicsPanel.setcurrState(curr);
     this.pack();
