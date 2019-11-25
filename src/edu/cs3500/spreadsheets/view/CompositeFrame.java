@@ -43,15 +43,23 @@ public class CompositeFrame extends JFrame {
 
 
 
-    //add buttons to the frame
 
-    cancel = new JButton("Cancel");
-    cancel.setSize(50,50);
 
     //add options panel
     editOptions = new JPanel(new GridLayout());
     GridBagConstraints c = new GridBagConstraints();
     c.fill = GridBagConstraints.HORIZONTAL;
+
+
+    //add buttons to the frame
+    cancel = new JButton("Cancel");
+    cancel.setSize(50,50);
+    c.gridx = 0;
+    c.gridy = 0;
+    c.ipadx = 10;
+    c.ipady = 30;
+
+    editOptions.add(cancel, c);
 
     confirm = new JButton("Confirm");
     confirm.setPreferredSize(new Dimension(10, 30));
@@ -62,6 +70,15 @@ public class CompositeFrame extends JFrame {
 
     editOptions.add(confirm,c);
 
+
+
+    rawContents = new JTextField();
+    rawContents.setPreferredSize(new Dimension(10, 30));
+    c.gridx = 0;
+    c.gridy = 0;
+    c.ipadx = 10;
+    c.ipady = 30;
+    editOptions.add(rawContents, c);
     //editOptions.add(cancel);
     //rawContents = new JTextField();
     //editOptions.add(rawContents);
