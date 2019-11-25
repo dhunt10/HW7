@@ -28,10 +28,6 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
 
   JTextField jTextField = new JTextField();
 
-  public CompositeSpreadsheetController(JTextField textField) {
-    this.jTextField = textField;
-  }
-
   @Override
   public void mouseClicked(MouseEvent e) {
 

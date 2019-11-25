@@ -120,7 +120,7 @@ public class CompositeFrame extends JFrame {
 
 
 
-  this.gridPanel.addMouseListener(new CompositeSpreadsheetController(rawContents));
+  this.gridPanel.addMouseListener(new CompositeSpreadsheetController());
 
 
 
