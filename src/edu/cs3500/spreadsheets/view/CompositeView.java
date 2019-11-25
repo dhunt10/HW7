@@ -13,7 +13,6 @@ public class CompositeView implements IView{
   int height;
   GridPanel cells;
   Spreadsheet model;
-  IView view;
 
   /**
    *
@@ -22,7 +21,6 @@ public class CompositeView implements IView{
    * @param height
    */
   public CompositeView(Map<Coord, Cell> sheet, int width, int height, Spreadsheet model) {
-    this.view = view;
     this.model = model;
     this.sheet = sheet;
     this.width = width;
