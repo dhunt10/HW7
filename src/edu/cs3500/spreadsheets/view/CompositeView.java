@@ -44,7 +44,7 @@ public class CompositeView implements IView{
   public String buildTextView() {
     throw new UnsupportedOperationException(
         "Can't display textual view of visual view");
-   }
+  }
 
   @Override
   public GraphicsFrame getGraphicsFrame() {

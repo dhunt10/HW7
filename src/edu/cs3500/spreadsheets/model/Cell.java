@@ -128,16 +128,20 @@ public class Cell {
    */
   public void setContents(String contents) {
 
-
     Sexp sexp;
     if (contents.contains("=")) {
       sexp = Parser.parse(contents.replaceAll("=", ""));
+      Formula formula = sexp.accept(new SexpToFormula());
+      this.contents = formula;
+    }
+    else if (contents.equals("")) {
+      this.contents = new StringValue("");
     }
     else {
       sexp = Parser.parse(contents);
+      Formula formula = sexp.accept(new SexpToFormula());
+      this.contents = formula;
     }
-    Formula formula = sexp.accept(new SexpToFormula());
-    this.contents = formula;
   }
 
 }
