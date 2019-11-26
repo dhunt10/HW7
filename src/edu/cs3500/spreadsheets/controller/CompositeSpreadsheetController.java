@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -34,6 +35,8 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
   private int x;
   private int y;
   private JButton accept;
+  private boolean high = false;
+  private Coord highLight;
 
   public CompositeSpreadsheetController(Spreadsheet model, int maxCols, int maxRows, JTextField textfield, JButton accept, IView view) {
     this.model = model;
@@ -56,13 +59,11 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
 
   @Override
   public void mouseClicked(MouseEvent e) {
-
     //highlightCell
     Component c = e.getComponent();
     ArrayList<Component> headerCells = new ArrayList<>();
     if (c instanceof GridPanel) {
-      this.x = e.getX()/80;
-      this.y = e.getY()/30;
+
 
       Cell highlightCell = (Cell) ((GridPanel) c).getcellScreenLocation()
           .get(e.getPoint());
@@ -86,15 +87,44 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
       }
 
       if(!headerCells.contains(test)) {
-        test.setBackground(Color.PINK);
+
+
+        if (highLight == null || !highLight.equals(new Coord(e.getX(), e.getY()))) {
+          highLight = new Coord(e.getX(), e.getY());
+          this.x = e.getX() / 80;
+          this.y = e.getY() / 30;
+          test.setBackground(Color.PINK);
+          //System.out.println(c.getComponentAt(e.getPoint()));
+          StringBuilder sb = new StringBuilder();
+          sb.append(Coord.colIndexToName(x)).append(y);
+          System.out.println(sb);
+          this.textField.setText(model.getCellAt(new Coord(x, y)).getRawString());
+        }
+        else {
+          this.x = -1;
+          this.y = -1;
+          test.setBackground(new Color(196,198,255));
+          this.high = false;
+          highLight = null;
+        }
+        /*if (!this.high) {
+          this.x = e.getX() / 80;
+          this.y = e.getY() / 30;
+          test.setBackground(Color.PINK);
+          //System.out.println(c.getComponentAt(e.getPoint()));
+          StringBuilder sb = new StringBuilder();
+          sb.append(Coord.colIndexToName(x)).append(y);
+          System.out.println(sb);
+          this.textField.setText(model.getCellAt(new Coord(x, y)).getRawString());
+          this.high = true;
+        }
+        else if (this.high) {
+          this.x = -1;
+          this.y = -1;
+          test.setBackground(new Color(196,198,255));
+          this.high = false;
+        }*/
       }
-      //System.out.println(c.getComponentAt(e.getPoint()));
-      System.out.println(x);
-      System.out.println(y);
-      StringBuilder sb = new StringBuilder();
-      sb.append(Coord.colIndexToName(x)).append(y);
-      System.out.println(sb);
-      this.textField.setText(model.getCellAt(new Coord(x, y)).getRawString());
     }
   }
 
@@ -135,7 +165,12 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
   public void actionPerformed(ActionEvent e) {
     StringBuilder sb = new StringBuilder();
     sb.append(Coord.colIndexToName(x)).append(y);
-    CompositeSpreadsheetController.updateProgram(sb.toString(), textField.getText(), model);
+    try {
+      CompositeSpreadsheetController.updateProgram(sb.toString(), textField.getText(), model);
+    }
+    catch (ArrayIndexOutOfBoundsException r) {
+      System.out.println("No Cell Selected");
+    }
     IView v = BeyondGood.createView("composite", null, model);
     v.display();
 

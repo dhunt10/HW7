@@ -136,7 +136,10 @@ public class BeyondGood {
       s.getEvaluatedCells();
     }
     catch (NumberFormatException e) {
-
+      System.out.println("");
+    }
+    catch (IllegalArgumentException e) {
+      System.out.println("No Cell Selected");
     }
   }
 
