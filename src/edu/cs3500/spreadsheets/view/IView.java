@@ -26,4 +26,5 @@ public interface IView {
   GraphicsFrame getGraphicsFrame();
   CompositeFrame getCompositeFrame();
   GridPanel getCells();
+
 }

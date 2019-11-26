@@ -121,7 +121,6 @@ public class CompositeFrame extends JFrame {
    */
   public void updatecurrState(Map<Coord, Cell> curr) {
     gridPanel.setcurrState(curr);
-    this.repaint();
   }
 
   /**

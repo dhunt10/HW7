@@ -83,6 +83,7 @@ public class GridPanel extends JPanel {
    * @param curr is the current list of cells
    */
   public void setcurrState(Map<Coord, Cell> curr) {
+    System.out.println(curr.get("\nA1\n swnjsnwjsnjw"));
     this.curr = curr;
   }
 

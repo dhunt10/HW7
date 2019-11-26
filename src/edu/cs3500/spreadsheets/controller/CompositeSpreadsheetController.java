@@ -1,3 +1,4 @@
+
 package edu.cs3500.spreadsheets.controller;
 
 import edu.cs3500.spreadsheets.BeyondGood;
@@ -17,6 +18,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 
@@ -92,12 +94,12 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
       }
 
       if(!headerCells.contains(test)) {
-
-
-        if (highLight == null || !highLight.equals(new Coord(e.getX(), e.getY()))) {
-          highLight = new Coord(e.getX(), e.getY());
+        System.out.println("here");
+        if (highLight == null || !highLight.equals(new Coord(this.x, this.y))) {
+          System.out.println("emptyclick");
           this.x = e.getX() / 80;
           this.y = e.getY() / 30;
+          highLight = new Coord(this.x, this.y);
           test.setBackground(Color.PINK);
           //System.out.println(c.getComponentAt(e.getPoint()));
           StringBuilder sb = new StringBuilder();
@@ -106,6 +108,7 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
           this.textField.setText(model.getCellAt(new Coord(x, y)).getRawString());
         }
         else {
+          System.out.println("clearing");
           this.x = -1;
           this.y = -1;
           test.setBackground(new Color(196,198,255));
@@ -160,17 +163,26 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
     sb.append(Coord.colIndexToName(x)).append(y);
     try {
       CompositeSpreadsheetController.updateProgram(sb.toString(), textField.getText(), model);
+      IView v = BeyondGood.createView("composite", null, model);
+      v.display();
+      //view.getCompositeFrame().updatecurrState(model.getCurrSpreadSheet());
+      //System.out.println(model.getCellAt(new Coord(1,1)));
+      //view.getCompositeFrame().display();
+      //SwingUtilities.updateComponentTreeUI(view.getCompositeFrame());
+      //view.getCompositeFrame().invalidate();
+      //view.getCompositeFrame().validate();
+      //view.getCompositeFrame().repaint();
     }
     catch (ArrayIndexOutOfBoundsException r) {
       System.out.println("No Cell Selected");
     }
-    IView v = BeyondGood.createView("composite", null, model);
-    v.display();
+
+    //
 
   }
 
   public static void updateProgram(String coordinate, String inString, Spreadsheet s) {
     BeyondGood.updateCurrentView(coordinate, inString, s);
   }
-  
+
 }
