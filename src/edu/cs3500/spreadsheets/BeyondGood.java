@@ -86,19 +86,6 @@ public class BeyondGood {
 
     if (file == null && type == "graphic" || file == null && type == "composite") {
       IView v = createView(type, saveTo, b.createWorksheet());
-      v.display();
-
-      //updateCurrentView(new String("A1"), "2", b.createWorksheet());
-      //CompositeSpreadsheetController compositeSpreadsheetController = new CompositeSpreadsheetController();
-      //compositeSpreadsheetController.updateProgram(new String("A1"), "5", b.createWorksheet());
-      //compositeSpreadsheetController.updateProgram(new String("A2"), "=(PROD A1 6)",b.createWorksheet());
-      //compositeSpreadsheetController.updateProgram(new String("A1"), "9", b.createWorksheet());
-
-      v = createView(type, saveTo, b.createWorksheet());
-      v.display();
-
-      //BasicWorksheet.getEvaluatedCells(b.getCurrSpreadSheet(), b.getCurrList());
-      //TODO keeping ^ in here to remember what i was going for earlier. now update is auto?
 
       v = createView(type, saveTo, b.createWorksheet());
       v.display();
@@ -149,7 +136,10 @@ public class BeyondGood {
       s.getEvaluatedCells();
     }
     catch (NumberFormatException e) {
-
+      System.out.println();
+    }
+    catch (IllegalArgumentException e) {
+      System.out.println("No Cell Selected");
     }
   }
 

@@ -52,8 +52,6 @@ public class BasicWorksheet implements Spreadsheet {
 
     Sexp sexp;
     for (Coord item : coordList) {
-
-
       if (currSpreadSheet.get(item).getRawString().contains("=")) {
         sexp = Parser.parse(currSpreadSheet.get(item)
             .getRawString().replaceAll("=", ""));
@@ -65,9 +63,14 @@ public class BasicWorksheet implements Spreadsheet {
         sexp = Parser.parse(currSpreadSheet.get(item).getContents().toString());
       }
 
-      Formula deliverable = sexp.accept(new SexpToFormula());
-      currSpreadSheet.get(item).setEvaluatedData(deliverable.evaluate(currSpreadSheet,
-          sexp.toString().split(" ")[0]));
+      try {
+        Formula deliverable = sexp.accept(new SexpToFormula());
+        currSpreadSheet.get(item).setEvaluatedData(deliverable.evaluate(currSpreadSheet,
+            sexp.toString().split(" ")[0]));
+      }
+      catch (ArrayIndexOutOfBoundsException e) {
+        currSpreadSheet.get(item).setEvaluatedData(new StringValue(currSpreadSheet.get(item).getRawString()));
+      }
     }
   }
 
@@ -83,10 +86,17 @@ public class BasicWorksheet implements Spreadsheet {
       }
       sexp = Parser.parse(value);
     }
-    Formula deliverable = sexp.accept(new SexpToFormula());
-
-    return deliverable.evaluate(s.getCurrSpreadSheet(),
-        sexp.toString().split(" ")[0]);
+    try {
+      Formula deliverable = sexp.accept(new SexpToFormula());
+      return deliverable.evaluate(s.getCurrSpreadSheet(),
+          sexp.toString().split(" ")[0]);
+    }
+    catch (ArrayIndexOutOfBoundsException e) {
+      return new StringValue("NaN");
+    }
+    catch (IllegalArgumentException e) {
+      return new StringValue("NaN");
+    }
   }
 
 
@@ -139,7 +149,7 @@ public class BasicWorksheet implements Spreadsheet {
         highRow = coord.row;
       }
     }
-    if (highRow == 0) {
+    if (highRow < 50) {
       return 100;
     }
     else {
@@ -162,7 +172,7 @@ public class BasicWorksheet implements Spreadsheet {
 
     }
 
-    if (highCol == 0) {
+    if (highCol < 50) {
       return 100;
     }
     else {
