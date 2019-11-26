@@ -1,4 +1,4 @@
-import static junit.framework.TestCase.assertEquals;
+/*import static junit.framework.TestCase.assertEquals;
 
 import edu.cs3500.spreadsheets.model.Cell;
 import edu.cs3500.spreadsheets.model.Coord;
@@ -15,7 +15,7 @@ import org.junit.Test;
 /**
  * Testing for functionality of cell.
  */
-public class CellTests {
+/*public class CellTests {
 
   @Test
   public void testBoolean() {
@@ -104,4 +104,4 @@ public class CellTests {
     assertEquals(12, test.getContents());
 
   }
-}
+}*/

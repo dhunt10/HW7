@@ -5,6 +5,7 @@ import edu.cs3500.spreadsheets.BeyondGood;
 import edu.cs3500.spreadsheets.model.Cell;
 import edu.cs3500.spreadsheets.model.Coord;
 import edu.cs3500.spreadsheets.model.Spreadsheet;
+import edu.cs3500.spreadsheets.view.CompositeFrame;
 import edu.cs3500.spreadsheets.view.CompositeViewButtonActions;
 import edu.cs3500.spreadsheets.view.CompositeViewMouseActions;
 import edu.cs3500.spreadsheets.view.GridPanel;
@@ -18,7 +19,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 
@@ -94,9 +94,7 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
       }
 
       if(!headerCells.contains(test)) {
-        System.out.println("here");
         if (highLight == null || highLight.row == -1 || !highLight.equals(new Coord(e.getX() / 80, e.getY() / 30))) {
-          System.out.println("emptyclick");
           this.x = e.getX() / 80;
           this.y = e.getY() / 30;
           highLight = new Coord(this.x, this.y);
@@ -104,11 +102,9 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
           //System.out.println(c.getComponentAt(e.getPoint()));
           StringBuilder sb = new StringBuilder();
           sb.append(Coord.colIndexToName(x)).append(y);
-          System.out.println(sb);
           this.textField.setText(model.getCellAt(new Coord(x, y)).getRawString());
         }
         else {
-          System.out.println("clearing");
           this.x = -1;
           this.y = -1;
           test.setBackground(new Color(196,198,255));
@@ -163,33 +159,30 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
     sb.append(Coord.colIndexToName(x)).append(y);
     try {
       new Coord(this.x, this.y);
-      CompositeSpreadsheetController.updateProgram(sb.toString(), textField.getText(), model);
-      IView v = BeyondGood.createView("composite", null, model);
-      view.getCompositeFrame().setVisible(false);
-      view.getCompositeFrame().setVisible(true);
-      v.display();
-      //view.getCompositeFrame().updatecurrState(model.getCurrSpreadSheet());
-      //System.out.println(model.getCellAt(new Coord(1,1)));
-      //view.getCompositeFrame().display();
-      //SwingUtilities.updateComponentTreeUI(view.getCompositeFrame());
-      //view.getCompositeFrame().invalidate();
-      //view.getCompositeFrame().validate();
-      //view.getCompositeFrame().repaint();
+      this.updateProgram(sb.toString(), textField.getText(), model);
 
     }
     catch (ArrayIndexOutOfBoundsException r) {
-      System.out.println("No Cell Selected");
+      System.out.println("No  Selected");
     }
     catch (IllegalArgumentException f) {
-      System.out.println("No Cell Selected");
+      System.out.println("No Cell ");
     }
-
-    //
 
   }
 
-  public static void updateProgram(String coordinate, String inString, Spreadsheet s) {
+  public void updateProgram(String coordinate, String inString, Spreadsheet s) {
     BeyondGood.updateCurrentView(coordinate, inString, s);
+  }
+
+  @Override
+  public void setX(int x) {
+    this.x = x;
+  }
+
+  @Override
+  public void setY(int y) {
+    this.y = y;
   }
 
 }
