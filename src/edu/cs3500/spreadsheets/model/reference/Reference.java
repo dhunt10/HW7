@@ -64,6 +64,7 @@ public class Reference implements Formula {
    */
   private List<String> referenceListMaker(String firstBound) {
 
+    System.out.println(firstBound);
     String[] coord1 = firstBound.split("(?<=\\D)(?=\\d)", 2);
 
     List<String> bounds = new ArrayList<>();

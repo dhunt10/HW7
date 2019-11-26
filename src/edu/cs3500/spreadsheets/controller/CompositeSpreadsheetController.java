@@ -136,8 +136,6 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
     StringBuilder sb = new StringBuilder();
     sb.append(Coord.colIndexToName(x)).append(y);
     CompositeSpreadsheetController.updateProgram(sb.toString(), textField.getText(), model);
-
-    System.out.println(model.getCellAt(new Coord(1,1)).getEvaluatedData());
     IView v = BeyondGood.createView("composite", null, model);
     v.display();
 

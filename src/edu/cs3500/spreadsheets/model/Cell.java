@@ -6,6 +6,7 @@ import edu.cs3500.spreadsheets.sexp.Parser;
 import edu.cs3500.spreadsheets.sexp.Sexp;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.text.Normalizer.Form;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -138,9 +139,24 @@ public class Cell {
       this.contents = new StringValue("");
     }
     else {
-      sexp = Parser.parse(contents);
-      Formula formula = sexp.accept(new SexpToFormula());
-      this.contents = formula;
+      try {
+        sexp = Parser.parse(contents);
+        Formula formula = sexp.accept(new SexpToFormula());
+        this.contents = formula;
+      }
+      catch (ArrayIndexOutOfBoundsException e) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\"").append(contents).append("\"");
+        System.out.println(sb.toString());
+        sexp = Parser.parse(sb.toString());
+        Formula formula = sexp.accept(new SexpToFormula());
+        this.contents = formula;
+      }
+      catch (IllegalArgumentException e) {
+        sexp = Parser.parse("NaN");
+        Formula formula = sexp.accept(new SexpToFormula());
+        this.contents = formula;
+      }
     }
   }
 
