@@ -62,15 +62,6 @@ public class CompositeFrame extends JFrame {
     c.ipadx = 10;
     c.ipady = 30;
 
-    //Cancel Button Action, to clear the text
-    cancel.addActionListener(
-        new ActionListener() {
-          @Override
-          public void actionPerformed(ActionEvent e) {
-            rawContents.setText("");
-
-          }
-        });
     editOptions.add(cancel, c);
 
     confirm = new JButton("Confirm");
@@ -98,7 +89,7 @@ public class CompositeFrame extends JFrame {
     JScrollPane scrollBar=new JScrollPane(gridPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     this.add(scrollBar, BorderLayout.CENTER);
 
-    this.gridPanel.addMouseListener(new CompositeSpreadsheetController(model, width, height, rawContents, confirm, this.view));
+    this.gridPanel.addMouseListener(new CompositeSpreadsheetController(model, width, height, rawContents, confirm, this.view, cancel));
 
     this.pack();
     this.setSize(800, 500);
