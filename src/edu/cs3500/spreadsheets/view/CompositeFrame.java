@@ -29,6 +29,7 @@ public class CompositeFrame extends JFrame {
   private JButton confirm;
   private JButton cancel;
   private Spreadsheet model;
+  private IView view;
 
   /**
    *
@@ -43,14 +44,9 @@ public class CompositeFrame extends JFrame {
     this.model = model;
     this.setPreferredSize(new Dimension(width,  height));
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
+    this.view = view;
 
     this.setLayout(new BorderLayout());
-
-
-
-
 
     //add options panel
     editOptions = new JPanel(new GridLayout());
@@ -95,22 +91,15 @@ public class CompositeFrame extends JFrame {
     c.ipady = 30;
     editOptions.add(rawContents, c);
 
-
-
     this.add(editOptions, BorderLayout.NORTH);
-
-
 
     //add the grid of cells
     gridPanel = new GridPanel(width, height, curr);
     JScrollPane scrollBar=new JScrollPane(gridPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     this.add(scrollBar, BorderLayout.CENTER);
 
+    this.gridPanel.addMouseListener(new CompositeSpreadsheetController(model, width, height, rawContents, confirm, this.view));
 
-
-    this.gridPanel.addMouseListener(new CompositeSpreadsheetController(model, width, height, rawContents, confirm, view));
-
-    //graphicsPanel.setcurrState(curr);
     this.pack();
     this.setSize(800, 500);
   }
@@ -119,8 +108,8 @@ public class CompositeFrame extends JFrame {
    *
    * @param curr
    */
-  public void updatecurrState(Map<Coord, Cell> curr) {
-    gridPanel.setcurrState(curr);
+  public void newState(Map<Coord, Cell> curr, int width, int height) {
+    gridPanel.setState(curr, width, height);
   }
 
   /**
@@ -130,7 +119,4 @@ public class CompositeFrame extends JFrame {
     this.setVisible(true);
   }
 
-  public GridPanel getGridPanel(){
-    return this.gridPanel;
-  }
 }
