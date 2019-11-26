@@ -1,4 +1,3 @@
-
 package edu.cs3500.spreadsheets.controller;
 
 import edu.cs3500.spreadsheets.BeyondGood;
@@ -19,6 +18,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 
@@ -45,14 +45,7 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
     this.accept = accept;
     accept.addActionListener(this::actionPerformed);
   }
-
-  //I know i am not using a controller correctly because this does not pass in a model and does
-  //not change the view based on the model that it inputs for the mouse things.
-
-  //Also another issue is that i hardcoded the goddamn for loops with a number, idk what
-  //to do about htis, should this be based on the model???
-
-
+  
   @Override
   public void mouseClicked(MouseEvent e) {
 
@@ -62,11 +55,11 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
   @Override
   public void mousePressed(MouseEvent e) {
     Component c= e.getComponent();
-    //Border whiteBorder = BorderFactory.createLineBorder(Color.WHITE);
-    //Border redBorder = BorderFactory.createLineBorder(Color.BLACK,5);
-   // JPanel test = (JPanel) c.getComponentAt(e.getPoint());
+    Border whiteBorder = BorderFactory.createLineBorder(Color.WHITE);
+    Border redBorder = BorderFactory.createLineBorder(Color.BLACK,5);
+    JPanel test = (JPanel) c.getComponentAt(e.getPoint());
 
-    //test.setBorder(redBorder);
+    test.setBorder(redBorder);
     //highlightCell
     ArrayList<Component> headerCells = new ArrayList<>();
     if (c instanceof GridPanel) {
@@ -75,7 +68,7 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
       Cell highlightCell = (Cell) ((GridPanel) c).getcellScreenLocation()
           .get(e.getPoint());
       //highlightCell.highlightSelf();
-      JPanel test = (JPanel) c.getComponentAt(e.getPoint());
+      test = (JPanel) c.getComponentAt(e.getPoint());
 
 
       for(Component cell : ((GridPanel) c).getComponents()){
@@ -94,7 +87,9 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
       }
 
       if(!headerCells.contains(test)) {
-        if (highLight == null || highLight.row == -1 || !highLight.equals(new Coord(e.getX() / 80, e.getY() / 30))) {
+        System.out.println("here");
+        if (highLight == null || highLight.row == -1 || !highLight.equals(new Coord(this.x, this.y))) {
+          System.out.println("emptyclick");
           this.x = e.getX() / 80;
           this.y = e.getY() / 30;
           highLight = new Coord(this.x, this.y);
@@ -102,9 +97,11 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
           //System.out.println(c.getComponentAt(e.getPoint()));
           StringBuilder sb = new StringBuilder();
           sb.append(Coord.colIndexToName(x)).append(y);
+          System.out.println(sb);
           this.textField.setText(model.getCellAt(new Coord(x, y)).getRawString());
         }
         else {
+          System.out.println("clearing");
           this.x = -1;
           this.y = -1;
           test.setBackground(new Color(196,198,255));
@@ -140,7 +137,7 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
     Border redBorder = BorderFactory.createLineBorder(Color.magenta,5);
     JPanel test = (JPanel) c.getComponentAt(e.getPoint());
 
-    //test.setBorder(whiteBorder);
+    test.setBorder(whiteBorder);
   }
 
   @Override
@@ -158,39 +155,12 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
     StringBuilder sb = new StringBuilder();
     sb.append(Coord.colIndexToName(x)).append(y);
     try {
-      new Coord(this.x, this.y);
       CompositeSpreadsheetController.updateProgram(sb.toString(), textField.getText(), model);
-      //view.getCompositeFrame().getContentPane().removeAll();
-      //JPanel jPanel = new JPanel();
-      //view.getCompositeFrame().getContentPane().add(jPanel);
-      //view.getCompositeFrame().validate();
-      //view.getCompositeFrame().setVisible(true);
-      //view.getCompositeFrame().setVisible(false);
-      //CompositeFrame compositeFrame = new CompositeFrame(model.getCurrSpreadSheet(), 50, 50 , model, view);
-      //compositeFrame.display();
-
-      IView v = BeyondGood.createView("composite", null, model);
-
-      //view.getCompositeFrame().setVisible(true);
-      v.display();
-      //view.getCompositeFrame().updatecurrState(model.getCurrSpreadSheet());
-      //System.out.println(model.getCellAt(new Coord(1,1)));
-      //view.getCompositeFrame().display();
-      //SwingUtilities.updateComponentTreeUI(view.getCompositeFrame());
-      //view.getCompositeFrame().invalidate();
-      //view.getCompositeFrame().validate();
-      //view.getCompositeFrame().repaint();
-
+      view.newState(model.getCurrSpreadSheet());
     }
     catch (ArrayIndexOutOfBoundsException r) {
-      System.out.println("No  Selected");
+      System.out.println("No Cell Selected");
     }
-    catch (IllegalArgumentException f) {
-      System.out.println("No Cell ");
-    }
-
-    //
-
   }
 
   public static void updateProgram(String coordinate, String inString, Spreadsheet s) {
