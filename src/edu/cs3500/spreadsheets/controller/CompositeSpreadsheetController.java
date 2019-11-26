@@ -35,7 +35,7 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
   private int y;
   private JButton accept;
 
-  public CompositeSpreadsheetController(Spreadsheet model, int maxCols, int maxRows, JTextField textfield, JButton accept){
+  public CompositeSpreadsheetController(Spreadsheet model, int maxCols, int maxRows, JTextField textfield, JButton accept, IView view) {
     this.model = model;
     this.view = view;
     this.maxCols = maxCols;
@@ -43,7 +43,6 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
     this.textField = textfield;
     this.accept = accept;
     accept.addActionListener(this::actionPerformed);
-
   }
 
   //I know i am not using a controller correctly because this does not pass in a model and does
@@ -130,7 +129,6 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
   @Override
   public void mouseExited(MouseEvent e) {
 
-
   }
 
   @Override
@@ -138,7 +136,11 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
     StringBuilder sb = new StringBuilder();
     sb.append(Coord.colIndexToName(x)).append(y);
     CompositeSpreadsheetController.updateProgram(sb.toString(), textField.getText(), model);
+
     System.out.println(model.getCellAt(new Coord(1,1)).getEvaluatedData());
+    IView v = BeyondGood.createView("composite", null, model);
+    v.display();
+
   }
 
   public static void updateProgram(String coordinate, String inString, Spreadsheet s) {

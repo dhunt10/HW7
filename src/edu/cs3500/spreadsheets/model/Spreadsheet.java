@@ -39,4 +39,7 @@ public interface Spreadsheet {
    *
    */
   List<Coord> getCurrList();
+
+
+  void getEvaluatedCells();
 }

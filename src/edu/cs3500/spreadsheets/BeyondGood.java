@@ -27,7 +27,7 @@ public class BeyondGood {
    * @param args any command-line arguments.
    */
   public static void main(String[] args) throws FileNotFoundException {
-    File infile = null;
+    File infile = new File("/Users/darinhunt/Desktop/OOD/HW7/test/test1.txt");
     File outfile = null;
     String incell = null;
     String view = "composite";
@@ -146,6 +146,7 @@ public class BeyondGood {
           .setEvaluatedData(BasicWorksheet.getEvaluatedSingleCell(s, value));
       s.getCurrSpreadSheet().get(new Coord(col, row)).setRawString(value);
       s.getCurrSpreadSheet().get(new Coord(col, row)).setContents(value);
+      s.getEvaluatedCells();
     }
     catch (NumberFormatException e) {
 
