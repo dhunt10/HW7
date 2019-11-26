@@ -20,7 +20,7 @@ public class GraphicsView implements IView{
 
   /**
    *
-   * @param sheet
+   * @param spreadsheet
    * @param width
    * @param height
    */
@@ -50,20 +50,15 @@ public class GraphicsView implements IView{
         "Can't display textual view of visual view");
   }
 
-
-  @Override
-  public CompositeFrame getCompositeFrame() {
-    throw new UnsupportedOperationException(
-        "No Composite Frame in this view");
-  }
-
   public GridPanel getCells(){
     return this.cells;
   }
 
   @Override
-  public GraphicsFrame getGraphicsFrame(){
-    return this.frame;
+  public void newState(Map<Coord, Cell> newSheet) {
+    throw new UnsupportedOperationException(
+        "No new view");
   }
+
 
 }

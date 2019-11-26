@@ -1,5 +1,9 @@
 package edu.cs3500.spreadsheets.view;
 
+import edu.cs3500.spreadsheets.model.Cell;
+import edu.cs3500.spreadsheets.model.Coord;
+import java.util.Map;
+
 /**
  *
  */
@@ -22,9 +26,6 @@ public interface IView {
    * @return
    */
   String buildTextView();
-
-  GraphicsFrame getGraphicsFrame();
-  CompositeFrame getCompositeFrame();
   GridPanel getCells();
-
+  void newState(Map<Coord, Cell> newSheet);
 }

@@ -39,18 +39,8 @@ public class GraphicsFrame extends JFrame {
     JScrollPane scrollBar=new JScrollPane(gridPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     this.add(scrollBar, BorderLayout.CENTER);
 
-    //graphicsPanel.setcurrState(curr);
     this.pack();
     this.setSize(800, 500);
-  }
-
-  /**
-   *
-   * @param curr
-   */
-  public void updatecurrState(Map<Coord, Cell> curr) {
-    gridPanel.setcurrState(curr);
-    this.repaint();
   }
 
   /**
