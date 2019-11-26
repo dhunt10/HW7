@@ -62,11 +62,11 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
   @Override
   public void mousePressed(MouseEvent e) {
     Component c= e.getComponent();
-    Border whiteBorder = BorderFactory.createLineBorder(Color.WHITE);
-    Border redBorder = BorderFactory.createLineBorder(Color.green,5);
-    JPanel test = (JPanel) c.getComponentAt(e.getPoint());
+    //Border whiteBorder = BorderFactory.createLineBorder(Color.WHITE);
+    //Border redBorder = BorderFactory.createLineBorder(Color.BLACK,5);
+   // JPanel test = (JPanel) c.getComponentAt(e.getPoint());
 
-    test.setBorder(redBorder);
+    //test.setBorder(redBorder);
     //highlightCell
     ArrayList<Component> headerCells = new ArrayList<>();
     if (c instanceof GridPanel) {
@@ -75,7 +75,7 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
       Cell highlightCell = (Cell) ((GridPanel) c).getcellScreenLocation()
           .get(e.getPoint());
       //highlightCell.highlightSelf();
-      test = (JPanel) c.getComponentAt(e.getPoint());
+      JPanel test = (JPanel) c.getComponentAt(e.getPoint());
 
 
       for(Component cell : ((GridPanel) c).getComponents()){
@@ -95,7 +95,7 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
 
       if(!headerCells.contains(test)) {
         System.out.println("here");
-        if (highLight == null || !highLight.equals(new Coord(this.x, this.y))) {
+        if (highLight == null || highLight.row == -1 || !highLight.equals(new Coord(e.getX() / 80, e.getY() / 30))) {
           System.out.println("emptyclick");
           this.x = e.getX() / 80;
           this.y = e.getY() / 30;
@@ -144,7 +144,7 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
     Border redBorder = BorderFactory.createLineBorder(Color.magenta,5);
     JPanel test = (JPanel) c.getComponentAt(e.getPoint());
 
-    test.setBorder(whiteBorder);
+    //test.setBorder(whiteBorder);
   }
 
   @Override
@@ -162,8 +162,11 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
     StringBuilder sb = new StringBuilder();
     sb.append(Coord.colIndexToName(x)).append(y);
     try {
+      new Coord(this.x, this.y);
       CompositeSpreadsheetController.updateProgram(sb.toString(), textField.getText(), model);
       IView v = BeyondGood.createView("composite", null, model);
+      view.getCompositeFrame().setVisible(false);
+      view.getCompositeFrame().setVisible(true);
       v.display();
       //view.getCompositeFrame().updatecurrState(model.getCurrSpreadSheet());
       //System.out.println(model.getCellAt(new Coord(1,1)));
@@ -172,8 +175,12 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
       //view.getCompositeFrame().invalidate();
       //view.getCompositeFrame().validate();
       //view.getCompositeFrame().repaint();
+
     }
     catch (ArrayIndexOutOfBoundsException r) {
+      System.out.println("No Cell Selected");
+    }
+    catch (IllegalArgumentException f) {
       System.out.println("No Cell Selected");
     }
 
