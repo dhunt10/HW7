@@ -49,20 +49,16 @@ public class TextView implements IView {
   }
 
   @Override
-  public GraphicsFrame getGraphicsFrame() {
-    throw new UnsupportedOperationException(
-        "No Frame in this view");
-  }
-
-  @Override
-  public CompositeFrame getCompositeFrame() {
-    throw new UnsupportedOperationException(
-        "No Frame in this view");  }
-
-  @Override
   public GridPanel getCells() {
     throw new UnsupportedOperationException(
         "No GridPanel in this view");  }
+
+
+  @Override
+  public void newState(Map<Coord, Cell> newSheet) {
+    throw new UnsupportedOperationException(
+        "No new view");
+  }
 
 
 }
