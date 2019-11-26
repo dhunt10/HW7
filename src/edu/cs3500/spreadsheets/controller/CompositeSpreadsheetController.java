@@ -4,7 +4,6 @@ import edu.cs3500.spreadsheets.BeyondGood;
 import edu.cs3500.spreadsheets.model.Cell;
 import edu.cs3500.spreadsheets.model.Coord;
 import edu.cs3500.spreadsheets.model.Spreadsheet;
-import edu.cs3500.spreadsheets.view.CompositeFrame;
 import edu.cs3500.spreadsheets.view.CompositeViewButtonActions;
 import edu.cs3500.spreadsheets.view.CompositeViewMouseActions;
 import edu.cs3500.spreadsheets.view.GridPanel;
@@ -12,11 +11,8 @@ import edu.cs3500.spreadsheets.view.IView;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -59,8 +55,21 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
 
   @Override
   public void mouseClicked(MouseEvent e) {
+
+  }
+
+
+
+
+  @Override
+  public void mousePressed(MouseEvent e) {
+    Component c= e.getComponent();
+    Border whiteBorder = BorderFactory.createLineBorder(Color.WHITE);
+    Border redBorder = BorderFactory.createLineBorder(Color.green,5);
+    JPanel test = (JPanel) c.getComponentAt(e.getPoint());
+
+    test.setBorder(redBorder);
     //highlightCell
-    Component c = e.getComponent();
     ArrayList<Component> headerCells = new ArrayList<>();
     if (c instanceof GridPanel) {
 
@@ -68,7 +77,7 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
       Cell highlightCell = (Cell) ((GridPanel) c).getcellScreenLocation()
           .get(e.getPoint());
       //highlightCell.highlightSelf();
-      JPanel test = (JPanel) c.getComponentAt(e.getPoint());
+      test = (JPanel) c.getComponentAt(e.getPoint());
 
 
       for(Component cell : ((GridPanel) c).getComponents()){
@@ -106,6 +115,7 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
           test.setBackground(new Color(196,198,255));
           this.high = false;
           highLight = null;
+          this.textField.setText("");
         }
         /*if (!this.high) {
           this.x = e.getX() / 80;
@@ -126,19 +136,6 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
         }*/
       }
     }
-  }
-
-
-
-
-  @Override
-  public void mousePressed(MouseEvent e) {
-    Component c= e.getComponent();
-    Border whiteBorder = BorderFactory.createLineBorder(Color.WHITE);
-    Border redBorder = BorderFactory.createLineBorder(Color.magenta,5);
-    JPanel test = (JPanel) c.getComponentAt(e.getPoint());
-
-    test.setBorder(redBorder);
   }
 
   @Override

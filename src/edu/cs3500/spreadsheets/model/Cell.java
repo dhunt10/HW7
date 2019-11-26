@@ -147,7 +147,6 @@ public class Cell {
       catch (ArrayIndexOutOfBoundsException e) {
         StringBuilder sb = new StringBuilder();
         sb.append("\"").append(contents).append("\"");
-        System.out.println(sb.toString());
         sexp = Parser.parse(sb.toString());
         Formula formula = sexp.accept(new SexpToFormula());
         this.contents = formula;
