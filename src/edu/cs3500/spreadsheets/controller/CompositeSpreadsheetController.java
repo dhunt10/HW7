@@ -4,7 +4,6 @@ import edu.cs3500.spreadsheets.BeyondGood;
 import edu.cs3500.spreadsheets.model.Cell;
 import edu.cs3500.spreadsheets.model.Coord;
 import edu.cs3500.spreadsheets.model.Spreadsheet;
-import edu.cs3500.spreadsheets.view.CompositeFrame;
 import edu.cs3500.spreadsheets.view.CompositeViewButtonActions;
 import edu.cs3500.spreadsheets.view.CompositeViewMouseActions;
 import edu.cs3500.spreadsheets.view.GridPanel;
@@ -12,10 +11,8 @@ import edu.cs3500.spreadsheets.view.IView;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -27,22 +24,22 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
     CompositeViewMouseActions, CompositeViewButtonActions{
 
   private Spreadsheet model;
-  private IView view;
   private int maxCols;
   private int maxRows;
   private JTextField textField;
   private int x;
   private int y;
   private JButton accept;
+  private IView view;
 
-  public CompositeSpreadsheetController(Spreadsheet model, int maxCols, int maxRows, JTextField textfield, JButton accept){
+  public CompositeSpreadsheetController(Spreadsheet model, IView view, int maxCols, int maxRows, JTextField textfield, JButton accept){
     this.model = model;
-    this.view = view;
     this.maxCols = maxCols;
     this.maxRows = maxRows;
     this.textField = textfield;
     this.accept = accept;
     accept.addActionListener(this::actionPerformed);
+    this.view = view;
 
   }
 
@@ -97,9 +94,8 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
       System.out.println(sb);
       this.textField.setText(model.getCellAt(new Coord(x, y)).getRawString());
     }
+
   }
-
-
 
 
   @Override
@@ -143,5 +139,12 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
 
   public static void updateProgram(String coordinate, String inString, Spreadsheet s) {
     BeyondGood.updateCurrentView(coordinate, inString, s);
+
+
+  }
+
+  @Override
+  public void start() {
+      view.display();
   }
 }
