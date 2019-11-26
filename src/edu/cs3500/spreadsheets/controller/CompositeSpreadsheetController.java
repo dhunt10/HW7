@@ -32,7 +32,7 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
   private int y;
   private JButton accept;
   private boolean high = false;
-  private Coord highLight;
+  private Coord highLight = null;
 
   public CompositeSpreadsheetController(Spreadsheet model, int maxCols, int maxRows, JTextField textfield, JButton accept, IView view) {
     this.model = model;
@@ -51,14 +51,10 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
   //to do about htis, should this be based on the model???
 
 
-
-
   @Override
   public void mouseClicked(MouseEvent e) {
 
   }
-
-
 
 
   @Override
@@ -176,4 +172,5 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
   public static void updateProgram(String coordinate, String inString, Spreadsheet s) {
     BeyondGood.updateCurrentView(coordinate, inString, s);
   }
+  
 }
