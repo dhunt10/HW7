@@ -47,6 +47,7 @@ public class BasicWorksheet implements Spreadsheet {
    * This function is called directly after a spreadsheet has been created and will subsequently
    * be called after every new cell addition.
    */
+  @Override
   public void getEvaluatedCells() {
 
     Sexp sexp;

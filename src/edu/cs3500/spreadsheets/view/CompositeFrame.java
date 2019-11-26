@@ -37,7 +37,7 @@ public class CompositeFrame extends JFrame {
    * @param height
    */
   public CompositeFrame(Map<Coord, Cell> curr,
-      int width, int height, Spreadsheet model) {
+      int width, int height, Spreadsheet model, IView view) {
 
     super();
     this.model = model;
@@ -108,7 +108,7 @@ public class CompositeFrame extends JFrame {
 
 
 
-    this.gridPanel.addMouseListener(new CompositeSpreadsheetController(model, width, height, rawContents, confirm));
+    this.gridPanel.addMouseListener(new CompositeSpreadsheetController(model, width, height, rawContents, confirm, view));
 
     //graphicsPanel.setcurrState(curr);
     this.pack();
