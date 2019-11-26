@@ -18,6 +18,8 @@ import javax.swing.JPanel;
  */
 public class GridPanel extends JPanel {
   private Map<Coord, Cell> curr;
+  private int col;
+  private int row;
 
   //add this list so that you will be able to access cells based on coordinates
   private ArrayList<Cell> cellsOnScreen;
@@ -29,7 +31,15 @@ public class GridPanel extends JPanel {
    */
   public GridPanel(int col, int row, Map<Coord, Cell> curr) {
     super();
+    this.col = col;
+    this.row = row;
     this.curr = curr;
+    this.setup();
+
+  }
+
+  public void setup(){
+    //this.curr = curr;
     setLayout(new GridBagLayout());
     GridBagConstraints c = new GridBagConstraints();
     c.fill = GridBagConstraints.HORIZONTAL;
@@ -75,25 +85,32 @@ public class GridPanel extends JPanel {
         add(cell, c);
       }
     }
-
   }
 
   /**
    * Will need this I assume next assignment when we can interact with the spreadsheet.
-   * @param curr is the current list of cells
+   * @param newCells is the current list of cells
    */
-  public void setcurrState(Map<Coord, Cell> curr) {
-    System.out.println(curr.get("\nA1\n swnjsnwjsnjw"));
-    this.curr = curr;
+  public void setState(Map<Coord, Cell> newCells, int col, int row) {
+
+    this.invalidate();
+    this.curr = newCells;
+    this.removeAll();
+    this.setup();
+    this.validate();
+    this.repaint();
+
+  }
+
+  public GridPanel getNewGrid(Map<Coord, Cell> newCells, int col, int row) {
+    return new GridPanel(col, row, newCells);
   }
 
   public Map getcellScreenLocation(){
     return this.cellScreenLocations;
   }
 
-  public ArrayList<Cell> getCellsOnScreen(){
-    return this.cellsOnScreen;
-  }
+
 
 }
 
