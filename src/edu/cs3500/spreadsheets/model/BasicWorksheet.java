@@ -149,7 +149,7 @@ public class BasicWorksheet implements Spreadsheet {
         highRow = coord.row;
       }
     }
-    if (highRow == 0) {
+    if (highRow < 50) {
       return 100;
     }
     else {
@@ -172,7 +172,7 @@ public class BasicWorksheet implements Spreadsheet {
 
     }
 
-    if (highCol == 0) {
+    if (highCol < 50) {
       return 100;
     }
     else {
