@@ -1,5 +1,5 @@
 # HW7
-### By Darin and Satwik
+### By Darin and Satwik.
 
 ### Spreadsheets
 #####
