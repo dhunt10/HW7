@@ -53,14 +53,6 @@ public class Cell {
   }
 
   /**
-   * Changes the current content of the cell.
-   * @param contents the newly inputted content.
-   */
-  public void setContents(Formula contents) {
-    this.contents = contents;
-  }
-
-  /**
    * Gets data that has been evaluated.
    * @return data that has been evaluated.
    */
@@ -80,7 +72,7 @@ public class Cell {
 
   public JPanel drawSelf() {
     JLabel field = new JLabel();
-    if (this.toString() == "") {
+    if (this.toString().equals("")) {
       field = new JLabel(" ");
     }
     else {
@@ -125,7 +117,7 @@ public class Cell {
   }
 
   /**
-
+   * Changes what will in the cell
    */
   public void setContents(String contents) {
 

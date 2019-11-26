@@ -129,17 +129,25 @@ public class BeyondGood {
     try {
       col = Coord.colNameToIndex(String.valueOf(coord1[0]));
       row = Integer.parseInt(coord1[1]);
-      s.getCurrSpreadSheet().get(new Coord(col, row))
-          .setEvaluatedData(BasicWorksheet.getEvaluatedSingleCell(s, value));
-      s.getCurrSpreadSheet().get(new Coord(col, row)).setRawString(value);
-      s.getCurrSpreadSheet().get(new Coord(col, row)).setContents(value);
+      try {
+        s.getCurrSpreadSheet().get(new Coord(col, row))
+            .setEvaluatedData(BasicWorksheet.getEvaluatedSingleCell(s, value));
+        s.getCurrSpreadSheet().get(new Coord(col, row)).setContents(value);
+        s.getCurrSpreadSheet().get(new Coord(col, row)).setRawString(value);
+      }
+      catch (IllegalArgumentException e) {
+        s.getCurrSpreadSheet().get(new Coord(col, row)).setRawString("\"" + value + "\"");
+        s.getCurrSpreadSheet().get(new Coord(col, row))
+            .setEvaluatedData(BasicWorksheet.getEvaluatedSingleCell(s, "NaN"));
+        s.getCurrSpreadSheet().get(new Coord(col, row)).setContents("NaN");
+      }
+
+
+
       s.getEvaluatedCells();
     }
     catch (NumberFormatException e) {
-      System.out.println();
-    }
-    catch (IllegalArgumentException e) {
-      System.out.println("No Cell Selected");
+      System.out.println("Here");
     }
   }
 

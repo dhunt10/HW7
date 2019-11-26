@@ -78,6 +78,7 @@ public class BasicWorksheet implements Spreadsheet {
     Sexp sexp = null;
     if (value.contains("=")) {
       sexp = Parser.parse(value.replaceAll("=", ""));
+      System.out.println(sexp.getClass());
     }
 
     else {
@@ -88,8 +89,10 @@ public class BasicWorksheet implements Spreadsheet {
     }
     try {
       Formula deliverable = sexp.accept(new SexpToFormula());
+
       return deliverable.evaluate(s.getCurrSpreadSheet(),
           sexp.toString().split(" ")[0]);
+
     }
     catch (ArrayIndexOutOfBoundsException e) {
       return new StringValue("NaN");
