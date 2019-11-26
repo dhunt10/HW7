@@ -159,27 +159,7 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
     sb.append(Coord.colIndexToName(x)).append(y);
     try {
       new Coord(this.x, this.y);
-      CompositeSpreadsheetController.updateProgram(sb.toString(), textField.getText(), model);
-      //view.getCompositeFrame().getContentPane().removeAll();
-      //JPanel jPanel = new JPanel();
-      //view.getCompositeFrame().getContentPane().add(jPanel);
-      //view.getCompositeFrame().validate();
-      //view.getCompositeFrame().setVisible(true);
-      //view.getCompositeFrame().setVisible(false);
-      //CompositeFrame compositeFrame = new CompositeFrame(model.getCurrSpreadSheet(), 50, 50 , model, view);
-      //compositeFrame.display();
-
-      IView v = BeyondGood.createView("composite", null, model);
-
-      //view.getCompositeFrame().setVisible(true);
-      v.display();
-      //view.getCompositeFrame().updatecurrState(model.getCurrSpreadSheet());
-      //System.out.println(model.getCellAt(new Coord(1,1)));
-      //view.getCompositeFrame().display();
-      //SwingUtilities.updateComponentTreeUI(view.getCompositeFrame());
-      //view.getCompositeFrame().invalidate();
-      //view.getCompositeFrame().validate();
-      //view.getCompositeFrame().repaint();
+      this.updateProgram(sb.toString(), textField.getText(), model);
 
     }
     catch (ArrayIndexOutOfBoundsException r) {
@@ -189,12 +169,20 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
       System.out.println("No Cell ");
     }
 
-    //
-
   }
 
-  public static void updateProgram(String coordinate, String inString, Spreadsheet s) {
+  public void updateProgram(String coordinate, String inString, Spreadsheet s) {
     BeyondGood.updateCurrentView(coordinate, inString, s);
+  }
+
+  @Override
+  public void setX(int x) {
+    this.x = x;
+  }
+
+  @Override
+  public void setY(int y) {
+    this.y = y;
   }
 
 }
