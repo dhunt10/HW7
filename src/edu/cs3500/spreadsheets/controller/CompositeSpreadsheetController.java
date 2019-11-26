@@ -157,14 +157,30 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
     try {
       CompositeSpreadsheetController.updateProgram(sb.toString(), textField.getText(), model);
       view.newState(model.getCurrSpreadSheet());
+      new Coord(this.x, this.y);
+      this.updateProgram(sb.toString(), textField.getText(), model);
     }
     catch (ArrayIndexOutOfBoundsException r) {
       System.out.println("No Cell Selected");
     }
+    catch (IllegalArgumentException f) {
+      System.out.println("No Cell ");
+    }
+
   }
 
-  public static void updateProgram(String coordinate, String inString, Spreadsheet s) {
+  public void updateProgram(String coordinate, String inString, Spreadsheet s) {
     BeyondGood.updateCurrentView(coordinate, inString, s);
+  }
+
+  @Override
+  public void setX(int x) {
+    this.x = x;
+  }
+
+  @Override
+  public void setY(int y) {
+    this.y = y;
   }
 
 }

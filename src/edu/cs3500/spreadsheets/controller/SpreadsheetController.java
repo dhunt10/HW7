@@ -7,8 +7,9 @@ import java.io.File;
 
 public interface SpreadsheetController {
 
-  static void updateProgram(String coordinate, String inString, Spreadsheet s) {
-    BeyondGood.updateCurrentView(coordinate, inString, s);
-  }
+  void updateProgram(String coordinate, String inString, Spreadsheet s);
+
+  void setX(int x);
+  void setY(int y);
 
 }

@@ -26,7 +26,7 @@ public class BasicWorksheet implements Spreadsheet {
    *
    * @param currSpreadSheet array list of array list holding the cells
    */
-  private BasicWorksheet(Map<Coord, Cell> currSpreadSheet, List<Coord> coordList) {
+  public BasicWorksheet(Map<Coord, Cell> currSpreadSheet, List<Coord> coordList) {
     this.currSpreadSheet = currSpreadSheet;
     this.coordList = coordList;
     fillBlank();

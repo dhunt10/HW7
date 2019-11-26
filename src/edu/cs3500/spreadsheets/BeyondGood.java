@@ -1,6 +1,5 @@
 package edu.cs3500.spreadsheets;
 
-//import edu.cs3500.spreadsheets.controller.CompositeSpreadsheetController;
 import edu.cs3500.spreadsheets.model.BasicWorksheet;
 import edu.cs3500.spreadsheets.model.BasicWorksheet.Builder;
 import edu.cs3500.spreadsheets.model.Coord;
@@ -15,7 +14,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ConcurrentModificationException;
 
 /**
  * The main class for our program.
@@ -27,7 +25,7 @@ public class BeyondGood {
    * @param args any command-line arguments.
    */
   public static void main(String[] args) throws FileNotFoundException {
-    File infile = new File("/Users/darinhunt/Desktop/OOD/HW7/test/test1.txt");
+    File infile = null;
     File outfile = null;
     String incell = null;
     String view = "composite";
@@ -141,8 +139,6 @@ public class BeyondGood {
             .setEvaluatedData(BasicWorksheet.getEvaluatedSingleCell(s, "NaN"));
         s.getCurrSpreadSheet().get(new Coord(col, row)).setContents("NaN");
       }
-
-
 
       s.getEvaluatedCells();
     }
