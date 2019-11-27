@@ -31,7 +31,7 @@ public class BeyondGood {
     File outfile = null;
     String incell = null;
     int size = 51;
-    String view = "composite";
+    String view = null;
     for (int i = 0; i < args.length; i++) {
       switch (args[i]) {
         case ("-size"):
@@ -44,6 +44,7 @@ public class BeyondGood {
           catch (ArrayIndexOutOfBoundsException e) {
             throw new IllegalArgumentException("That is not a valid integer");
           }
+          i++;
           break;
         case("-in"):
           if (i == args.length - 1) {
