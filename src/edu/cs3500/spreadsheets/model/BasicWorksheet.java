@@ -207,10 +207,6 @@ public class BasicWorksheet implements Spreadsheet {
     return currSpreadSheet;
   }
 
-  @Override
-  public List<Coord> getCurrList() {
-    return coordList;
-  }
 
   /**
    * This is a static class that allows us to build the worksheet.
