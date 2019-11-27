@@ -2,10 +2,13 @@ package edu.cs3500.spreadsheets.controller;
 
 import edu.cs3500.spreadsheets.model.Spreadsheet;
 
+/**
+ * Controller responsible for communicating between view and model.
+ */
 public interface SpreadsheetController {
 
   /**
-   * updates the program with new information
+   * updates the program with new information.
    * @param coordinate the cell coordinate.
    * @param inString the raw string to be placed in a cell.
    * @param s the spreadsheet.
