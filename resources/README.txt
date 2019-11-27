@@ -3,10 +3,10 @@
 
 ### Spreadsheets
 #####
-Data can be placed into the spreadsheets by loading in a static textfile as well as dynamically
+Data can be placed into the spreadsheets by loading in a static text file as well as dynamically
 when the composite graphical view is running. If the graphical view is running data can only be
-inputted via a static file before running the program. Finally, a simpler textview is also available
-in which you can view the data but cannot edit it as the data has been read in via a static textfile
+inputted via a static file before running the program. Finally, a simpler text view is also available
+in which you can view the data but cannot edit it as the data has been read in via a static text file
 before compile time.
 
 ### ***Changes Made***
@@ -21,6 +21,28 @@ Every time we make changes to the spreadsheet we then update the dynamic view.
 Instead of throwing errors when illicit data is placed in one of the cells we have now
 implemented certain handlers to warn or tell the user they have done so. These specific behaviors
 are explained below.
+
+We have also added listeners. The listeners we have added in the controller consist of two
+designated to call a function when one of the two buttons is clicked. When the confirm
+button is clicked the data placed into the text box is evaluated and placed into the currently
+selected cell. When the cancel button is pressed the current raw data in the cell is placed into
+the text box.
+
+We have an additional listener which waits for button clicks anywhere on the grid. The click's
+coordinates are then translated to a cell number and a cell is then chosen and depending on
+if the cell is currently selected it will either highlight or un-highlight. This is how you must
+a cell.
+
+## To edit a cell:
+> - First: click a cell and wait for it to be highlighter (it wont be long).
+> - Second: enter the data in the text box in the proper format (see below for details).
+> - Third: Press the confirm button.
+> - Watch your data update the chart.
+
+## To clear a cell:
+> - Select the cell
+> - Clear the data from the text box
+> - Press the confirm button
 
 ### Behavior
 #####
@@ -106,4 +128,3 @@ A5 =(PROD (SUM 10 20) (PROD 10 A4))
 A6 =(SUM A2:B2)
 A7 =(< A7 3)
 ````
-
