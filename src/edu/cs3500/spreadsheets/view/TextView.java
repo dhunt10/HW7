@@ -60,7 +60,8 @@ public class TextView implements IView {
   @Override
   public GridPanel getCells() {
     throw new UnsupportedOperationException(
-        "No GridPanel in this view");  }
+        "No GridPanel in this view");
+  }
 
 
   @Override

@@ -41,7 +41,7 @@ public class GridPanel extends JPanel {
   /**
    * Configures the grid to be used later.
    */
-  public void setup(){
+  public void setup() {
     //this.curr = curr;
     setLayout(new GridBagLayout());
     GridBagConstraints c = new GridBagConstraints();
@@ -82,8 +82,9 @@ public class GridPanel extends JPanel {
 
         //this is for the headers, needs to be modified.
         for (Coord coord: curr.keySet()) {
-          if(coord.row == j && coord.col == i)
+          if (coord.row == j && coord.col == i) {
             add(curr.get(coord).drawSelf(), c); //adds labels to grid
+          }
         }
         add(cell, c);
       }
@@ -120,7 +121,7 @@ public class GridPanel extends JPanel {
    * get the current location of cell.
    * @return cell location.
    */
-  public Map getcellScreenLocation(){
+  public Map getcellScreenLocation() {
     return this.cellScreenLocations;
   }
 

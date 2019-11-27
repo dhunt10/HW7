@@ -24,7 +24,7 @@ import javax.swing.border.Border;
  * Controller for communicating between view and model.
  */
 public class CompositeSpreadsheetController implements SpreadsheetController,
-    CompositeViewMouseActions, CompositeViewButtonActions{
+    CompositeViewMouseActions, CompositeViewButtonActions {
 
   private Spreadsheet model;
   private IView view;
@@ -48,7 +48,8 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
    * @param view the view.
    * @param cancel the cancel button so we can have action listeners for it.
    */
-  public CompositeSpreadsheetController(Spreadsheet model, int maxCols, int maxRows, JTextField textfield, JButton accept, IView view, JButton cancel) {
+  public CompositeSpreadsheetController(Spreadsheet model, int maxCols, int maxRows,
+      JTextField textfield, JButton accept, IView view, JButton cancel) {
     this.model = model;
     this.view = view;
     this.maxCols = maxCols;
@@ -73,13 +74,13 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
   
   @Override
   public void mouseClicked(MouseEvent e) {
-
+    //not necessary
   }
 
 
   @Override
   public void mousePressed(MouseEvent e) {
-    Component c= e.getComponent();
+    Component c = e.getComponent();
 
     ArrayList<Component> headerCells = new ArrayList<>();
     if (c instanceof GridPanel) {
@@ -91,23 +92,24 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
       JPanel test = (JPanel) c.getComponentAt(e.getPoint());
 
 
-      for(Component cell : ((GridPanel) c).getComponents()){
+      for (Component cell : ((GridPanel) c).getComponents()) {
         cell.setBackground(new Color(196, 198, 255));
       }
 
-      for(int width = 1; width <= 1 + maxCols*80; width += 80){
+      for (int width = 1; width <= 1 + maxCols * 80; width += 80) {
         c.getComponentAt(width, 1).setBackground(new Color(74, 77, 145));
         headerCells.add(c.getComponentAt(width, 1));
 
       }
 
-      for(int height = 1; height <= 1 + maxRows*30; height += 30){
+      for (int height = 1; height <= 1 + maxRows * 30; height += 30) {
         c.getComponentAt(1, height).setBackground(new Color(74, 77, 145));
         headerCells.add(c.getComponentAt(1, height));
       }
 
-      if(!headerCells.contains(test)) {
-        if (highLight == null || highLight.row == -1 || !highLight.equals(new Coord(e.getX() / 80, e.getY() / 30))) {
+      if (!headerCells.contains(test)) {
+        if (highLight == null || highLight.row == -1
+            || !highLight.equals(new Coord(e.getX() / 80, e.getY() / 30))) {
           this.x = e.getX() / 80;
           this.y = e.getY() / 30;
           highLight = new Coord(this.x, this.y);
@@ -130,7 +132,7 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
 
   @Override
   public void mouseReleased(MouseEvent e) {
-    Component c= e.getComponent();
+    Component c = e.getComponent();
     Border whiteBorder = BorderFactory.createLineBorder(Color.WHITE);
     Border redBorder = BorderFactory.createLineBorder(Color.magenta,5);
     JPanel test = (JPanel) c.getComponentAt(e.getPoint());
@@ -140,11 +142,12 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
 
   @Override
   public void mouseEntered(MouseEvent e) {
-
+    //not necessary
   }
 
   @Override
   public void mouseExited(MouseEvent e) {
+    //not necessary
 
   }
 
@@ -204,6 +207,6 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
 
   @Override
   public void actionPerformed(ActionEvent e) {
-
+    //not necessary
   }
 }

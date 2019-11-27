@@ -6,9 +6,9 @@ import edu.cs3500.spreadsheets.model.Spreadsheet;
 import java.util.Map;
 
 /**
- *
+ * The view.
  */
-public class GraphicsView implements IView{
+public class GraphicsView implements IView {
   GraphicsFrame frame;
   Map<Coord, Cell> sheet;
   int width;

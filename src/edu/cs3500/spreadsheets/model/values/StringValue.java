@@ -25,12 +25,6 @@ public class StringValue implements Value {
   }
 
   @Override
-  public Value evaluate() {
-    return this;
-  }
-
-
-  @Override
   public boolean equals(Object o) {
     if (this == o) {
       return true;

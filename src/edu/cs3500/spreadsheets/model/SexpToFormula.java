@@ -43,7 +43,7 @@ public class SexpToFormula implements SexpVisitor<Formula> {
   @Override
   public Formula visitSList(List<Sexp> l) {
     List<Formula> args = new ArrayList<>();
-    for(int i = 0; i < l.size(); i++){
+    for (int i = 0; i < l.size(); i++) {
       args.add(l.get(i).accept(this));
     }
 

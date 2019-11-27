@@ -1,6 +1,9 @@
 package edu.cs3500.spreadsheets.model.values;
 
+import edu.cs3500.spreadsheets.model.Cell;
+import edu.cs3500.spreadsheets.model.Coord;
 import edu.cs3500.spreadsheets.model.Formula;
+import java.util.Map;
 
 /**
  * Formula.
@@ -14,8 +17,8 @@ public interface Value extends Formula {
   void setValue(Object value);
 
   /**
-   *
-   * @return
+   * Evaluates a cell.
+   * @return the value of the cell.
    */
-  Value evaluate();
+  Value evaluate(Map<Coord, Cell> mapOfCells, String useless);
 }

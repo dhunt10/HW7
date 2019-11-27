@@ -23,7 +23,7 @@ public class Reference implements Formula {
   String function = "default";
 
   /**
-   * Contructor. takes in a string that should be formatted as ["Cell1:Cell2"] or ["Cell1]. The
+   * Constructor. takes in a string that should be formatted as ["Cell1:Cell2"] or ["Cell1]. The
    * constructor takes in a string, calls a function to make a list of the cells. being references
    * and then calls an additional function to return a list of coordinates.
    *
@@ -42,6 +42,11 @@ public class Reference implements Formula {
     this.evaluatedRefs = getRefs();
   }
 
+  /**
+   * Constructor, takes ina  single reference.
+   * @param references single reference to another cell.
+   * @param function the type of function action to be acted on the reference.
+   */
   public Reference(String references, String function) {
     this.function = function;
     this.references = references;
@@ -151,9 +156,10 @@ public class Reference implements Formula {
     double sum = 1;
 
     if (useless.equals("(SUM")) {
-      for (int i =0; i < evaluatedRefs.size(); i++) {
+      for (int i = 0; i < evaluatedRefs.size(); i++) {
         try {
-          sum = sum + Double.parseDouble(String.valueOf(mapOfCells.get(evaluatedRefs.get(i)).getEvaluatedData()));
+          sum = sum + Double.parseDouble(String.valueOf(
+              mapOfCells.get(evaluatedRefs.get(i)).getEvaluatedData()));
         }
         catch (NullPointerException e) {
           continue;
@@ -166,11 +172,12 @@ public class Reference implements Formula {
       sum = sum - 1;
     }
     else if (useless.equals("(PROD")) {
-      for (int i =0; i < evaluatedRefs.size(); i++) {
+      for (int i = 0; i < evaluatedRefs.size(); i++) {
 
 
         try {
-          sum = sum * Double.parseDouble(String.valueOf(mapOfCells.get(evaluatedRefs.get(i)).getEvaluatedData()));
+          sum = sum * Double.parseDouble(String.valueOf(mapOfCells.get(
+              evaluatedRefs.get(i)).getEvaluatedData()));
         }
         catch (NullPointerException e) {
           continue;

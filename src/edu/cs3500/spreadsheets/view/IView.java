@@ -11,7 +11,7 @@ public interface IView {
 
 
   /**
-   * Where to save the file
+   * Where to save the file.
    * @param filePath the path which the file will be saved.
    */
   void saveTo(String filePath);

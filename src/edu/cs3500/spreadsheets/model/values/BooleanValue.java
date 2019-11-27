@@ -31,18 +31,9 @@ public class BooleanValue implements Value {
   }
 
   /**
-   * Function to give us the evaluated version of the Value.
-   * @return Value
-   */
-  @Override
-  public Value evaluate() {
-    return this;
-  }
-
-  /**
-   * This overrides the equals
-   * @param o
-   * @return
+   * This overrides the equals.
+   * @param o boolean object.
+   * @return boolean object.
    */
   @Override
   public boolean equals(Object o) {
@@ -78,7 +69,7 @@ public class BooleanValue implements Value {
 
   @Override
   public void setValue(Object value) {
-
+    //not necessary
   }
 }
 
