@@ -1,7 +1,6 @@
 package edu.cs3500.spreadsheets.view;
 
 import edu.cs3500.spreadsheets.controller.CompositeSpreadsheetController;
-import edu.cs3500.spreadsheets.BeyondGood;
 import edu.cs3500.spreadsheets.model.Cell;
 import edu.cs3500.spreadsheets.model.Coord;
 import edu.cs3500.spreadsheets.model.Spreadsheet;
@@ -9,8 +8,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -32,10 +29,12 @@ public class CompositeFrame extends JFrame {
   private IView view;
 
   /**
-   *
-   * @param curr
-   * @param width
-   * @param height
+   * Constructor to have a composite, dynamic frame.
+   * @param curr current spreadsheet in map form.
+   * @param width width of the spreadsheet.
+   * @param height height of the spreadhseet.
+   * @param model spreadsheet.
+   * @param view the current view.
    */
   public CompositeFrame(Map<Coord, Cell> curr,
       int width, int height, Spreadsheet model, IView view) {
@@ -96,15 +95,17 @@ public class CompositeFrame extends JFrame {
   }
 
   /**
-   *
-   * @param curr
+   * Updates the state of the view.
+   * @param curr spreadsheet in map form.
+   * @param width width of the spreadsheet.
+   * @param height height of the spreadsheet.
    */
   public void newState(Map<Coord, Cell> curr, int width, int height) {
     gridPanel.setState(curr, width, height);
   }
 
-  /**
-   *
+   /**
+   * Sets the view to be visable.
    */
   public void display() {
     this.setVisible(true);

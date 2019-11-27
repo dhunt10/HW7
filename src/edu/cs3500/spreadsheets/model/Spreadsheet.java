@@ -36,10 +36,7 @@ public interface Spreadsheet {
   int getMaxRow();
 
   /**
-   *
+   * Updates the spreadsheet to evaluate all of the cells.
    */
-  List<Coord> getCurrList();
-
-
   void getEvaluatedCells();
 }

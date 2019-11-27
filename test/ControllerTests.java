@@ -1,6 +1,5 @@
 import static junit.framework.TestCase.assertEquals;
 
-import edu.cs3500.spreadsheets.BeyondGood;
 import edu.cs3500.spreadsheets.controller.CompositeSpreadsheetController;
 import edu.cs3500.spreadsheets.model.BasicWorksheet;
 import edu.cs3500.spreadsheets.model.Cell;
@@ -8,20 +7,17 @@ import edu.cs3500.spreadsheets.model.Coord;
 import edu.cs3500.spreadsheets.view.CompositeView;
 import java.awt.AWTException;
 import java.awt.Robot;
-import java.awt.event.InputEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import org.junit.Test;
 
+/**
+ * Tests the controller and the dependencies of the controller like the listeners. 
+ */
 public class ControllerTests {
 
 

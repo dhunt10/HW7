@@ -6,7 +6,6 @@ import edu.cs3500.spreadsheets.sexp.Parser;
 import edu.cs3500.spreadsheets.sexp.Sexp;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.text.Normalizer.Form;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -26,6 +25,7 @@ public class Cell {
    * Construtor for a cell that will have contents.
    * @param coords the coordinates of the cell in currSpreadSheet.
    * @param contents content of the cell, not yet evaluated.
+   * @param cellValueString raw string value to be placed in cell.
    */
   public Cell(Coord coords, Formula contents, String cellValueString) {
     this.coord = coords;
@@ -68,8 +68,10 @@ public class Cell {
     this.evaluatedData = value;
   }
 
-
-
+  /**
+   * So the cell knows how ot draw itself in the view.
+   * @return JPanel of the cell.
+   */
   public JPanel drawSelf() {
     JLabel field = new JLabel();
     if (this.toString().equals("")) {
@@ -110,14 +112,16 @@ public class Cell {
   }
 
   /**
-
+   * Sets the raw string value of a cell.
+   * @param raw string value to be placed in cell.
    */
   public void setRawString(String raw) {
     this.cellValueString = raw;
   }
 
   /**
-   * Changes what will in the cell
+   * Changes what will in the cell.
+   * @param contents the content that will be placed in the cell.
    */
   public void setContents(String contents) {
 

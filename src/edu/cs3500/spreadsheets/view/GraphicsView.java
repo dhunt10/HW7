@@ -19,10 +19,10 @@ public class GraphicsView implements IView{
   Spreadsheet spreadsheet;
 
   /**
-   *
-   * @param spreadsheet
-   * @param width
-   * @param height
+   * Static view constructor.
+   * @param spreadsheet spreadsheet.
+   * @param width width of spreadsheet.
+   * @param height height of spreadsheet.
    */
   public GraphicsView(Spreadsheet spreadsheet, int width, int height) {
     this.sheet = spreadsheet.getCurrSpreadSheet();
@@ -50,7 +50,11 @@ public class GraphicsView implements IView{
         "Can't display textual view of visual view");
   }
 
-  public GridPanel getCells(){
+  /**
+   * Returns the current grid.
+   * @return current grid.
+   */
+  public GridPanel getCells() {
     return this.cells;
   }
 

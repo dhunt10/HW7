@@ -16,10 +16,11 @@ public class CompositeView implements IView{
   IView view;
 
   /**
-   *
-   * @param sheet
-   * @param width
-   * @param height
+   * constructor to have a composite dynamic view.
+   * @param sheet spreadsheet in map form.
+   * @param width width of the spreadsheet.
+   * @param height height of teh spreadsheet.
+   * @param model spreadsheet.
    */
   public CompositeView(Map<Coord, Cell> sheet, int width, int height, Spreadsheet model) {
     this.view = view;
