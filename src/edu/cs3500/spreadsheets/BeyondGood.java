@@ -25,10 +25,10 @@ public class BeyondGood {
    * @param args any command-line arguments.
    */
   public static void main(String[] args) throws FileNotFoundException {
-    File infile = null;
-    File outfile = null;
+    File infile = new File("/Users/darinhunt/Desktop/OOD/HW7/test/testTRI.txt");
+    File outfile = new File("/Users/darinhunt/Desktop/OOD/HW7/test/testTRI_results.txt");
     String incell = null;
-    int size = 50;
+    int size = 51;
     String view = "composite";
     for (int i = 0; i < args.length; i++) {
       switch (args[i]) {

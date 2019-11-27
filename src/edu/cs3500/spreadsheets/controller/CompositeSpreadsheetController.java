@@ -170,10 +170,14 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
   }
 
   @Override
-  public int getX() {
-    return this.x;
+  public final void setX(int x) {
+    this.x = x;
   }
 
+  @Override
+  public final void setY(int y) {
+    this.y = y;
+  }
 
   @Override
   public void actionPerformed(ActionEvent e) {

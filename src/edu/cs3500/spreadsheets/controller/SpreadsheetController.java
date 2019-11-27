@@ -9,7 +9,7 @@ public interface SpreadsheetController {
 
   void updateProgram(String coordinate, String inString, Spreadsheet s);
 
-  int getX();
+  void setX(int x);
 
-
+  void setY(int y);
 }
