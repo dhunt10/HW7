@@ -85,7 +85,6 @@ public class BasicWorksheet implements Spreadsheet {
     Sexp sexp = null;
     if (value.contains("=")) {
       sexp = Parser.parse(value.replaceAll("=", ""));
-      System.out.println(sexp.getClass());
     }
 
     else {
