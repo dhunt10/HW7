@@ -58,7 +58,7 @@ public class CompositeView implements IView{
   @Override
   public void newState(Map<Coord, Cell> state) {
     this.sheet = state;
-    frame.newState(state, width, height);
+    frame.newState(state);
   }
 
 

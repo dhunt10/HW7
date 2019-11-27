@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import org.junit.Test;
 
 /**
- * Tests the controller and the dependencies of the controller like the listeners. 
+ * Tests the controller and the dependencies of the controller like the listeners.
  */
 public class ControllerTests {
 

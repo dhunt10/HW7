@@ -97,11 +97,9 @@ public class CompositeFrame extends JFrame {
   /**
    * Updates the state of the view.
    * @param curr spreadsheet in map form.
-   * @param width width of the spreadsheet.
-   * @param height height of the spreadsheet.
    */
-  public void newState(Map<Coord, Cell> curr, int width, int height) {
-    gridPanel.setState(curr, width, height);
+  public void newState(Map<Coord, Cell> curr) {
+    gridPanel.setState(curr);
   }
 
    /**
