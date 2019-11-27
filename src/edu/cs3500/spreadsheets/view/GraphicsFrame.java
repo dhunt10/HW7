@@ -21,10 +21,10 @@ public class GraphicsFrame extends JFrame {
   private JLabel[][] grid; //names the grid of buttons
 
   /**
-   *
-   * @param curr
-   * @param width
-   * @param height
+   * Graphical static view constructor.
+   * @param curr current map of cells.
+   * @param width width of the spreadsheet.
+   * @param height height of the spreadsheet.
    */
   public GraphicsFrame(Map<Coord, Cell> curr,
       int width, int height) {
@@ -44,13 +44,17 @@ public class GraphicsFrame extends JFrame {
   }
 
   /**
-   *
+   * Allows for the display to be visible to user.
    */
   public void display() {
     this.setVisible(true);
   }
 
-  public GridPanel getGridPanel(){
+  /**
+   * Returns current grid.
+   * @return current grid.
+   */
+  public GridPanel getGridPanel() {
     return this.gridPanel;
   }
 }

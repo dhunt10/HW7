@@ -24,7 +24,8 @@ public class BasicWorksheet implements Spreadsheet {
   /**
    * This build the worksheet with given list of cells.
    *
-   * @param currSpreadSheet array list of array list holding the cells
+   * @param currSpreadSheet array list of array list holding the cells.
+   * @param coordList list of all the cells filled.
    */
   public BasicWorksheet(Map<Coord, Cell> currSpreadSheet, List<Coord> coordList) {
     this.currSpreadSheet = currSpreadSheet;
@@ -74,6 +75,12 @@ public class BasicWorksheet implements Spreadsheet {
     }
   }
 
+  /**
+   * Evaluates a single cell, to be used upon receiving a newly updated cell.
+   * @param s spreadsheet.
+   * @param value value to be placed in cell.
+   * @return the evaluated value of the in value.
+   */
   public static Value getEvaluatedSingleCell(Spreadsheet s, String value) {
     Sexp sexp = null;
     if (value.contains("=")) {

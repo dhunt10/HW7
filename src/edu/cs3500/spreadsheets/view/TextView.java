@@ -6,6 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Map;
 
+/**
+ * View rendered in text form.
+ */
 public class TextView implements IView {
   Map<Coord, Cell> sheet;
   int width;
@@ -13,6 +16,12 @@ public class TextView implements IView {
   int x;
   int y;
 
+  /**
+   * Constructor of text view.
+   * @param sheet map to be rendered.
+   * @param width width of the spreadsheet.
+   * @param height height of the spreadsheet.
+   */
   public TextView( Map<Coord, Cell> sheet,
       int width, int height) {
     this.sheet = sheet;

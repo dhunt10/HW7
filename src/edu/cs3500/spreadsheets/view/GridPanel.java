@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- *
+ * Class to make a grid inside of the view.
  */
 public class GridPanel extends JPanel {
   private Map<Coord, Cell> curr;
@@ -38,6 +38,9 @@ public class GridPanel extends JPanel {
 
   }
 
+  /**
+   * Configures the grid to be used later.
+   */
   public void setup(){
     //this.curr = curr;
     setLayout(new GridBagLayout());
@@ -88,10 +91,10 @@ public class GridPanel extends JPanel {
   }
 
   /**
-   * Will need this I assume next assignment when we can interact with the spreadsheet.
-   * @param newCells is the current list of cells
+   * Updates the state of the board.
+   * @param newCells is the current list of cells.
    */
-  public void setState(Map<Coord, Cell> newCells, int col, int row) {
+  public void setState(Map<Coord, Cell> newCells) {
 
     this.invalidate();
     this.curr = newCells;
@@ -102,10 +105,21 @@ public class GridPanel extends JPanel {
 
   }
 
+  /**
+   * creates a new grid to be used.
+   * @param newCells list of cells to be used to make the grid.
+   * @param col size.
+   * @param row size.
+   * @return a new grid.
+   */
   public GridPanel getNewGrid(Map<Coord, Cell> newCells, int col, int row) {
     return new GridPanel(col, row, newCells);
   }
 
+  /**
+   * get the current location of cell.
+   * @return cell location.
+   */
   public Map getcellScreenLocation(){
     return this.cellScreenLocations;
   }

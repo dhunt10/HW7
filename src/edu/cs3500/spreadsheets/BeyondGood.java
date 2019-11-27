@@ -25,8 +25,10 @@ public class BeyondGood {
    * @param args any command-line arguments.
    */
   public static void main(String[] args) throws FileNotFoundException {
-    File infile = new File("/Users/darinhunt/Desktop/OOD/HW7/test/testTRI.txt");
-    File outfile = new File("/Users/darinhunt/Desktop/OOD/HW7/test/testTRI_results.txt");
+    //File infile = new File("/Users/darinhunt/Desktop/OOD/HW7/test/testTRI.txt");
+    //File outfile = new File("/Users/darinhunt/Desktop/OOD/HW7/test/testTRI_results.txt");
+    File infile = null;
+    File outfile = null;
     String incell = null;
     int size = 51;
     String view = "composite";
@@ -83,6 +85,9 @@ public class BeyondGood {
    * Function that creates a spreadsheet by taking in a file.
    * @param file the name of the file.
    * @param cell cell.
+   * @param type the type of view to be rendered.
+   * @param saveTo the path of where to save the outfile to.
+   * @param size the size of the spreadsheet to be made.
    * @throws FileNotFoundException
    */
   private static void createSpreadSheet(File file, String cell, String type, File saveTo, int size) throws FileNotFoundException {
@@ -128,8 +133,12 @@ public class BeyondGood {
 
   }
 
-
-
+  /**
+   * Updates the view when new cells are added.
+   * @param coord the coordinate of the newly updated cell. In form : A1.
+   * @param value the raw string value being placed in the new cell.
+   * @param s the spreadsheet.
+   */
   public static void updateCurrentView(String coord, String value, Spreadsheet s) {
     String[] coord1 = coord.split("(?<=\\D)(?=\\d)", 2);
     int col;
@@ -157,6 +166,14 @@ public class BeyondGood {
     }
   }
 
+  /**
+   * Responsible for rendering the view.
+   * @param type the type of view.
+   * @param saveTo where the spreadsheet is being saved to.
+   * @param s the spreadsheet.
+   * @param size the size of the spreadsheet.
+   * @return the view.
+   */
   public static IView createView(String type, File saveTo, Spreadsheet s, int size) {
     switch (type) {
       case("text"):
