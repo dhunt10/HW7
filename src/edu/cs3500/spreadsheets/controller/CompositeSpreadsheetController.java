@@ -112,7 +112,6 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
           this.y = e.getY() / 30;
           highLight = new Coord(this.x, this.y);
           test.setBackground(Color.PINK);
-          //System.out.println(c.getComponentAt(e.getPoint()));
           StringBuilder sb = new StringBuilder();
           sb.append(Coord.colIndexToName(x)).append(y);
           this.textField.setText(model.getCellAt(new Coord(x, y)).getRawString());
@@ -165,7 +164,7 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
       System.out.println("No Cell Selected");
     }
     catch (IllegalArgumentException f) {
-      System.out.println("No Cell ");
+      System.out.println("No Cell Selected");
     }
 
     this.x = -1;

@@ -162,7 +162,7 @@ public class BeyondGood {
       s.getEvaluatedCells();
     }
     catch (NumberFormatException e) {
-      System.out.println("Here");
+      System.out.println("Invalid value");
     }
   }
 
