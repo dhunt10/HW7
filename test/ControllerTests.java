@@ -96,15 +96,4 @@ public class ControllerTests {
 
     assertEquals(text.getText(), "10");
   }
-
-
-    /*Robot robot = new Robot();
-    robot.mouseMove(120, 50);
-    robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-    robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-    compositeSpreadsheetController.setX(1);
-    compositeSpreadsheetController.setY(1);
-    compositeSpreadsheetController.actionPerformed(new MouseEvent(InputEvent.));
-    System.out.println(compositeSpreadsheetController.getX());
-  }*/
 }

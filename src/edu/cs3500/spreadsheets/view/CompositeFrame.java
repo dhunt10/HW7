@@ -16,11 +16,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+/**
+ * Defines a frame in a window.
+ */
 public class CompositeFrame extends JFrame {
   private Map<Coord, Cell> curr;
   private GridPanel gridPanel;
   private JPanel editOptions;
-  private JFrame frame=new JFrame(); //creates frame
+  private JFrame frame = new JFrame(); //creates frame
   private JLabel[][] grid; //names the grid of buttons
   private JTextField rawContents;
   private JButton confirm;
@@ -85,10 +88,12 @@ public class CompositeFrame extends JFrame {
 
     //add the grid of cells
     gridPanel = new GridPanel(width, height, curr);
-    JScrollPane scrollBar=new JScrollPane(gridPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    JScrollPane scrollBar = new JScrollPane(
+        gridPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     this.add(scrollBar, BorderLayout.CENTER);
 
-    this.gridPanel.addMouseListener(new CompositeSpreadsheetController(model, width, height, rawContents, confirm, this.view, cancel));
+    this.gridPanel.addMouseListener(new CompositeSpreadsheetController(
+        model, width, height, rawContents, confirm, this.view, cancel));
 
     this.pack();
     this.setSize(800, 500);
@@ -102,8 +107,9 @@ public class CompositeFrame extends JFrame {
     gridPanel.setState(curr);
   }
 
-   /**
-   * Sets the view to be visable.
+
+  /**
+   * Sets the view to be visible.
    */
   public void display() {
     this.setVisible(true);

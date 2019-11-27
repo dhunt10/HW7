@@ -95,11 +95,11 @@ public class Function implements Formula {
             < Double.parseDouble(values.get(2).evaluate(mapOfCells, func).toString());
       }
       catch (NullPointerException e) {
-          return new BooleanValue(false);
-        }
-        catch (NumberFormatException e) {
-          return new BooleanValue(false);
-        }
+        return new BooleanValue(false);
+      }
+      catch (NumberFormatException e) {
+        return new BooleanValue(false);
+      }
       return new BooleanValue(ans);
     }
 

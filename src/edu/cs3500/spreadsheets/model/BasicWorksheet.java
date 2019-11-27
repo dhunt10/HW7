@@ -70,7 +70,8 @@ public class BasicWorksheet implements Spreadsheet {
             sexp.toString().split(" ")[0]));
       }
       catch (ArrayIndexOutOfBoundsException e) {
-        currSpreadSheet.get(item).setEvaluatedData(new StringValue(currSpreadSheet.get(item).getRawString()));
+        currSpreadSheet.get(item).setEvaluatedData(
+            new StringValue(currSpreadSheet.get(item).getRawString()));
       }
     }
   }
@@ -112,9 +113,8 @@ public class BasicWorksheet implements Spreadsheet {
   /**
    * This creates a builder of a blank cell as a redundancy of the blank cell constructor.
    * @param coord coordinate for new blank cell.
-   * @return a Builder
    */
-  public void blankCell (Coord coord){
+  public void blankCell(Coord coord) {
     Cell cell = new Cell(coord);
     currSpreadSheet.put(coord, cell);
     coordList.add(coord);
@@ -251,7 +251,7 @@ public class BasicWorksheet implements Spreadsheet {
      * @param coord coordinate of cell you wish to access.
      * @return the cell of the given coordinate.
      */
-    public Cell getCellAt (Coord coord){
+    public Cell getCellAt(Coord coord) {
       return currSpreadSheet.get(coord);
     }
 
@@ -260,7 +260,7 @@ public class BasicWorksheet implements Spreadsheet {
      * @return BasicWorksheet
      */
     @Override
-    public BasicWorksheet createWorksheet () {
+    public BasicWorksheet createWorksheet() {
       return new BasicWorksheet(currSpreadSheet, coordList);
     }
 

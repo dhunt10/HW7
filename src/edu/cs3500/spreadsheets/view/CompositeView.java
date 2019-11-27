@@ -5,7 +5,10 @@ import edu.cs3500.spreadsheets.model.Coord;
 import edu.cs3500.spreadsheets.model.Spreadsheet;
 import java.util.Map;
 
-public class CompositeView implements IView{
+/**
+ * The view.
+ */
+public class CompositeView implements IView {
 
   CompositeFrame frame;
   Map<Coord, Cell> sheet;
@@ -31,6 +34,7 @@ public class CompositeView implements IView{
     this.frame = new CompositeFrame(sheet, width, height, model, this);
     //this.cells = frame.getGridPanel();
   }
+
   @Override
   public void saveTo(String filePath) {
     throw new UnsupportedOperationException("Can't save a visual view");

@@ -60,10 +60,10 @@ public class BeyondGood {
           i++;
           break;
         case("-save"):
-          if(i == args.length - 1){
+          if (i == args.length - 1) {
             throw new IllegalArgumentException("Need a file name to save to");
           }
-          outfile = new File(args[i+1]);
+          outfile = new File(args[i + 1]);
           view = "text";
           i++;
           break;
@@ -88,18 +88,18 @@ public class BeyondGood {
    * @param type the type of view to be rendered.
    * @param saveTo the path of where to save the outfile to.
    * @param size the size of the spreadsheet to be made.
-   * @throws FileNotFoundException
+   * @throws FileNotFoundException if file not found.
    */
   private static void createSpreadSheet(File file, String cell, String type, File saveTo, int size) throws FileNotFoundException {
     Builder b = new Builder();
     BufferedReader reader;
     Spreadsheet spreadsheet;
 
-    if (file == null && type == "text") {
+    if (file == null && type.equals("text")) {
       throw new IllegalArgumentException("text needs a file");
     }
 
-    if (file == null && type == "graphic" || file == null && type == "composite") {
+    if (file == null && type.equals("graphic") || file == null && type.equals("composite")) {
       IView v = createView(type, saveTo, b.createWorksheet(), size);
       v.display();
     }

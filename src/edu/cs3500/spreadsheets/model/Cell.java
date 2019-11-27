@@ -98,7 +98,7 @@ public class Cell {
   public String toString() {
     try {
       return evaluatedData.toString();
-    } catch (NullPointerException e){
+    } catch (NullPointerException e) {
       return "";
     }
   }

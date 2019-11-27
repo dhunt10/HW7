@@ -10,14 +10,13 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
 /**
- *
- *
+ * graphical frame to be put on a window.
  */
 public class GraphicsFrame extends JFrame {
 
   private Map<Coord, Cell> curr;
   private GridPanel gridPanel;
-  private JFrame frame=new JFrame(); //creates frame
+  private JFrame frame = new JFrame(); //creates frame
   private JLabel[][] grid; //names the grid of buttons
 
   /**
@@ -36,7 +35,8 @@ public class GraphicsFrame extends JFrame {
     this.setLayout(new BorderLayout());
     gridPanel = new GridPanel(width, height, curr);
 
-    JScrollPane scrollBar=new JScrollPane(gridPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    JScrollPane scrollBar = new JScrollPane(
+        gridPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     this.add(scrollBar, BorderLayout.CENTER);
 
     this.pack();
