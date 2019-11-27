@@ -25,12 +25,24 @@ public class BeyondGood {
    * @param args any command-line arguments.
    */
   public static void main(String[] args) throws FileNotFoundException {
-    File infile = null;
-    File outfile = null;
+    File infile = new File("/Users/darinhunt/Desktop/OOD/HW7/test/testTRI.txt");
+    File outfile = new File("/Users/darinhunt/Desktop/OOD/HW7/test/testTRI_results.txt");
     String incell = null;
+    int size = 51;
     String view = "composite";
     for (int i = 0; i < args.length; i++) {
       switch (args[i]) {
+        case ("-size"):
+          if (i == args.length - 1) {
+            throw new IllegalArgumentException("You need to give a size");
+          }
+          try {
+            size = Integer.parseInt(args[i + 1]);
+          }
+          catch (ArrayIndexOutOfBoundsException e) {
+            throw new IllegalArgumentException("That is not a valid integer");
+          }
+          break;
         case("-in"):
           if (i == args.length - 1) {
             throw new IllegalArgumentException("You need to give me an input file you dumb-dumb");
@@ -64,7 +76,7 @@ public class BeyondGood {
       }
     }
 
-    createSpreadSheet(infile, incell, view, outfile);
+    createSpreadSheet(infile, incell, view, outfile, size);
   }
 
   /**
@@ -73,7 +85,7 @@ public class BeyondGood {
    * @param cell cell.
    * @throws FileNotFoundException
    */
-  private static void createSpreadSheet(File file, String cell, String type, File saveTo) throws FileNotFoundException {
+  private static void createSpreadSheet(File file, String cell, String type, File saveTo, int size) throws FileNotFoundException {
     Builder b = new Builder();
     BufferedReader reader;
     Spreadsheet spreadsheet;
@@ -83,9 +95,7 @@ public class BeyondGood {
     }
 
     if (file == null && type == "graphic" || file == null && type == "composite") {
-      IView v = createView(type, saveTo, b.createWorksheet());
-
-      v = createView(type, saveTo, b.createWorksheet());
+      IView v = createView(type, saveTo, b.createWorksheet(), size);
       v.display();
     }
     else {
@@ -112,7 +122,7 @@ public class BeyondGood {
 
       b.createWorksheet();
 
-      IView v = createView(type, saveTo, s);
+      IView v = createView(type, saveTo, s, size);
       v.display();
     }
 
@@ -147,15 +157,15 @@ public class BeyondGood {
     }
   }
 
-  public static IView createView(String type, File saveTo, Spreadsheet s) {
+  public static IView createView(String type, File saveTo, Spreadsheet s, int size) {
     switch (type) {
       case("text"):
         TextView createView = new TextView(s.getCurrSpreadSheet(), 5, 5);
         createView.saveTo(saveTo.getPath());
         return createView;
-      case("graphic"): return new GraphicsView(s,  50, 50);
+      case("graphic"): return new GraphicsView(s,  size, size);
       case("composite"):
-        return new CompositeView(s.getCurrSpreadSheet(), 50, 50, s);
+        return new CompositeView(s.getCurrSpreadSheet(), size, size, s);
       default: throw new IllegalArgumentException("This type of view is not supported");
     }
   }

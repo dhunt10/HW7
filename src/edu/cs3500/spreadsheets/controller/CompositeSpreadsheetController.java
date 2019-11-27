@@ -12,6 +12,7 @@ import edu.cs3500.spreadsheets.view.IView;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
@@ -33,17 +34,31 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
   private int x;
   private int y;
   private JButton accept;
+  private JButton cancel;
   private boolean high = false;
   private Coord highLight = null;
 
-  public CompositeSpreadsheetController(Spreadsheet model, int maxCols, int maxRows, JTextField textfield, JButton accept, IView view) {
+  public CompositeSpreadsheetController(Spreadsheet model, int maxCols, int maxRows, JTextField textfield, JButton accept, IView view, JButton cancel) {
     this.model = model;
     this.view = view;
     this.maxCols = maxCols;
     this.maxRows = maxRows;
     this.textField = textfield;
     this.accept = accept;
-    accept.addActionListener(this::actionPerformed);
+    accept.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        actionDone(e);
+      }
+    });
+
+    this.cancel = cancel;
+    cancel.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        cancelActionPerformed(e);
+      }
+    });
   }
   
   @Override
@@ -124,8 +139,7 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
 
   }
 
-  @Override
-  public void actionPerformed(ActionEvent e) {
+  public void actionDone(ActionEvent e) {
     StringBuilder sb = new StringBuilder();
     sb.append(Coord.colIndexToName(x)).append(y);
     try {
@@ -142,7 +156,13 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
 
     this.x = -1;
     this.y = -1;
+    textField.setText("");
 
+  }
+
+  public void cancelActionPerformed(ActionEvent e) {
+    String contents = model.getCellAt(new Coord(x, y)).getRawString();
+    textField.setText(contents);
   }
 
   public void updateProgram(String coordinate, String inString, Spreadsheet s) {
@@ -150,13 +170,17 @@ public class CompositeSpreadsheetController implements SpreadsheetController,
   }
 
   @Override
-  public void setX(int x) {
+  public final void setX(int x) {
     this.x = x;
   }
 
   @Override
-  public void setY(int y) {
+  public final void setY(int y) {
     this.y = y;
   }
 
+  @Override
+  public void actionPerformed(ActionEvent e) {
+
+  }
 }
